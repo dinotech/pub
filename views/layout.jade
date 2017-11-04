@@ -1,0 +1,272 @@
+doctype html
+html
+	head
+		title #{flash.title}
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap/css/bootstrap.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/animate.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/backgrounds.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/boilerplate.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/border-radius.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/grid.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/page-transitions.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/spacing.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/typography.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/utils.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/colors.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/badges.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/buttons.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/content-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/dashboard-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/forms.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/images.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/info-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/invoice.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/loading-indicators.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/menus.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/panel-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/response-messages.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/responsive-tables.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/ribbon.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/social-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/tables.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/tile-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/timeline.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/fontawesome/fontawesome.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/linecons/linecons.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/spinnericon/spinnericon.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/accordion-ui/accordion.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/calendar/calendar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/carousel/carousel.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/justgage/justgage.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/morris/morris.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/piegage/piegage.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/xcharts/xcharts.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/chosen/chosen.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/colorpicker/colorpicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datatable/datatable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker/datepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker-ui/datepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/daterangepicker/daterangepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dialog/dialog.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dropdown/dropdown.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dropzone/dropzone.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/file-input/fileinput.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/input-switch/inputswitch.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/input-switch/inputswitch-alt.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/ionrangeslider/ionrangeslider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/jcrop/jcrop.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/jgrowl-notifications/jgrowl.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/loading-bar/loadingbar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/maps/vector-maps/vectormaps.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/markdown/markdown.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/modal/modal.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/multi-select/multiselect.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/multi-upload/fileupload.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/nestable/nestable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/noty-notifications/noty.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/popover/popover.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/pretty-photo/prettyphoto.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/progressbar/progressbar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/range-slider/rangeslider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/slidebars/slidebars.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/slider-ui/slider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/summernote-wysiwyg/summernote-wysiwyg.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tabs-ui/tabs.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/theme-switcher/themeswitcher.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/timepicker/timepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tocify/tocify.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tooltip/tooltip.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/touchspin/touchspin.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/uniform/uniform.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/wizard/wizard.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/xeditable/xeditable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/chat.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/files-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/login-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/notification-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/progress-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/todo.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/user-profile.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/mobile-navigation.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/applications/mailbox.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/admin/layout.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/admin/color-schemes/default.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/components/default.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/components/border-radius.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/responsive-elements.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/admin-responsive.css')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-core.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-core.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-widget.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-mouse.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-position.js')
+		script(type='text/javascript', src='/javascripts/js-core/modernizr.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-cookie.js')
+		script(type='text/javascript').
+			$(window).load(function(){
+			setTimeout(function() {
+			$('#loading').fadeOut( 400, "linear" );
+			}, 300);
+			});
+	body
+		#page-wrapper
+			#page-header.bg-gradient-9
+				#mobile-navigation
+					button#nav-toggle.collapsed(data-toggle='collapse', data-target='#page-sidebar')
+						span
+					a.logo-content-small(href='#', title='MonarchUI')
+				#header-logo.logo-bg
+					a.logo-content-big(href='#', title='MonarchUI')
+						| Monarch 
+						i UI
+						span The perfect solution for user interfaces
+					a.logo-content-small(href='index.html', title='MonarchUI')
+						| Monarch 
+						i UI
+						span The perfect solution for user interfaces
+					a#close-sidebar(href='#', title='Close sidebar')
+						i.glyph-icon.icon-angle-left
+				// #header-nav-left
+				#header-nav-right
+					a#logout-btn.header-btn(href='/inbox', title='Inbox')
+							i.glyph-icon.icon-envelope
+					a#logout-btn.header-btn(href='/logout', title='Logout')
+						i.glyph-icon.icon-power-off
+				// #header-nav-right
+			#page-sidebar
+				.scroll-sidebar
+					- if (flash.role == "superadmin")
+						ul#sidebar-menu
+							li.header
+								span Overview
+							li
+								a(href='/dashboard', title='Dashboard')
+									span Dashboard
+							li.header
+								span Manage
+							li
+								a(href='/manageVendor', title='Manage Vendor')
+									span Manage Vendor
+							li
+								a(href='/manageReferral', title='Manage Referral')
+									span Manage Referral
+							li
+								a(href='/managePayment', title='Manage Payment')
+									span  Manage Payment
+							li.header
+								span Settings
+							li
+								a(href='/manageCommission', title='Manage Commission')
+									span  Manage Commissions
+							li
+								a(href='/manageFeaturedList', title='Manage Featured List')
+									span  Manage Featured List
+							li
+								a(href='/manageFeaturedPlan', title='Manage Featured Plans')
+									span  Manage Featured Plans
+							li
+								a(href='/manageAgreement', title='Manage Agreements')
+									span  Manage Agreements
+							li
+								a(href='/manageGenres', title='Manage Genres')
+									span  Manage Genres
+							li
+								a(href='/manageCurrency', title='Manage Currencies')
+									span  Manage Currencies
+							li
+								a(href='/pushNotification', title='Push Notification')
+									span  Push Notification
+							//
+								li
+									a(href='#', title='Push Notification')
+										span Push Notification
+								li
+									a(href='#', title='Forms UI')
+										span Reports Handling
+									.sidebar-submenu
+										ul
+											li
+												a(href='forms-elements.html', title='Form elements')
+													span All Sales
+											li
+												a(href='forms-validation.html', title='Form validation')
+													span Commissions
+											li
+												a(href='pickers.html', title='Pickers')
+													span Users List
+											li
+												a(href='sliders.html', title='Sliders')
+													span Payment In and Out
+											li
+												a(href='forms-wizard.html', title='Form wizards')
+													span Historical View
+					- else if (flash.role == "vendor")
+						ul#sidebar-menu
+							li.header
+								span Overview
+							li
+								a(href='/dashboard', title='Dashboard')
+									span Dashboard
+							li
+								a(href='#', title='Reports')
+									span Reports
+								.sidebar-submenu
+									ul
+										li
+											a(href='/guestsReport', title='Guests Report')
+												span Guests Report
+							li.header
+								span Manage
+							li
+								a(href='/thelist', title='The List')
+									span The List
+							li
+								a(href='/manageEvent', title='Events')
+									span Events
+							li
+								a(href='/manageDj', title='DJ')
+									span  DJ
+							li
+								a(href='/manageDoorman', title='Doorman')
+									span Doorman
+							li
+								a(href='/payments', title='Payments')
+									span Payments
+							li
+								a(href='/viewAgreement', title='Agreement')
+									span Agreement
+							li.header
+								span Settings
+							li
+								a(href='/pushNotification', title='Push Notification')
+									span  Push Notification
+							li
+								a(href='/manageGenres', title='Genres')
+									span Genres
+							li
+								a(href='/manageVendor/editVendor/#{flash.id}', title='My Profile')
+									span Profile
+					- else
+						ul#sidebar-menu
+							li.header
+								span Overview
+							li
+								a(href='/dashboard', title='Dashboard')
+									span Dashboard
+							li.header
+								span Manage
+							li
+								a(href='/referralVendor', title='Vendor List')
+									span Vendor List
+							li
+								a(href='/referralPayment', title='Payments Details')
+									span Payments Details
+							li.header
+								span Settings
+							li
+								a(href='/manageReferral/addReferral/#{flash.id}', title='My Profile')
+									span Profile
+
+			#page-content-wrapper
+				block contents

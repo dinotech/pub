@@ -1,0 +1,88 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// jQueryUI Spinner
+			script(type='text/javascript', src='/stylesheets/widgets/spinner/spinner.js')
+			script(type='text/javascript').
+				/* jQuery UI Spinner */
+				$(function() { "use strict";
+				$(".spinner-input").spinner();
+				});
+			// jQueryUI Autocomplete
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/menu.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete-demo.js')
+			// Touchspin
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/touchspin/touchspin.css">
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin.js')
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			// Multi select
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/multi-select/multiselect.css">
+			script(type='text/javascript', src='/stylesheets/widgets/multi-select/multiselect.js')
+			script(type='text/javascript').
+				/* Multiselect inputs */
+				$(function() { "use strict";
+				$(".multi-select").multiSelect();
+				$(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
+				});
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			// DatePicker
+			link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap/css/bootstrap-datetimepicker.min.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/frontend-elements/pricing-table.css')
+
+			#page-title
+				h2 #{flash.title}
+			.panel
+				.panel-body
+					.example-box-wrapper.phase
+						.pricing-box-alt.row.clearfix(style='text-align:center;')
+							- if (plans)
+								- each plan, i in plans
+									- finalprice = plan.planprice*100 
+									.col-md-3.individual-plan
+										.plan-header
+											h4 #{plan.plantitle}
+											.plan-price
+												small $
+												| #{plan.planprice}
+										ul
+											li.header
+											li #{plan.planduration} months
+										form(action='/manageEvent/payment/#{eventid}', method='post', style='margin:15px;')
+											script(src='https://checkout.stripe.com/checkout.js',
+													class='stripe-button',
+													data-key='pk_test_oEHhSFGSou3hSDaei5DtroIx',
+													data-name='Featured Plan',
+													data-description='',
+													data-locale='',
+													data-currency='usd')
+											input(type='hidden', name='chargeamount', value='#{plan.planprice}')
+											input(type='hidden', name='plantitle', value='#{plan.plantitle}')
+											input(type='hidden', name='planduration', value='#{plan.planduration}')
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+
+	

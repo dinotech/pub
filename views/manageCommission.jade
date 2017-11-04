@@ -1,0 +1,63 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+			#page-title
+				h2 #{flash.title}
+				#theme-options.admin-options
+					a.btn.btn-primary.theme-switcher.tooltip-button(href='javascript:void(0);', data-placement='left', title='Color schemes and layout options')
+						i.glyph-icon.icon-linecons-cog.icon-spin
+			.panel
+				.panel-body
+					.example-box-wrapper
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+						- if (flash && flash.successdel && flash.successdel.length > 0)
+							p.alert.alert-success= flash.successdel
+						.col-lg-12(style="margin-bottom:10px;padding:0;")
+							a.btn.btn-md.float-right.btn-primary(href="/manageCommission/setCommission") Set Commission
+						table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+							thead
+								tr
+									th S.No.
+									th Vendor Name
+									th Role
+									th Purchase Option
+									th Commission Type
+									th Commission Price
+									th View
+									th Delete
+							tbody
+								- if (commissions)
+									- j = 1
+									- each commission, i in commissions
+										tr
+											td #{j}
+											- if (commission.userid.role == 'vendor')
+												td #{commission.userid.companyname}
+												td Vendor
+											- else
+												td #{commission.userid.firstname} #{commission.userid.lastname} 
+												td Referral
+											td #{commission.purchaseoption}
+											td #{commission.commissiontype}
+											td #{commission.commissionprice}
+											td
+												a.btn.btn-primary(href="/manageCommission/setCommission/#{commission._id}")
+													i.glyph-icon.icon-pencil-square-o
+											td
+												a.btn.btn-danger(href="/manageCommission/delCommission/#{commission._id}")
+													i.glyph-icon.icon-pencil-square-o
+										- j++
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')

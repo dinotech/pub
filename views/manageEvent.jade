@@ -1,0 +1,153 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			style.
+				#myTab li.active a{
+				background-color:#FFF;
+				color:#a1a1a1;
+				border-color:#ddd;
+				border-bottom-color:transparent;
+				}
+				.panel{
+				    border: none;
+				    border-radius: inherit;
+				    border-left: 1px solid #ddd;
+				    border-bottom: 1px solid #ddd;
+				    border-right: 1px solid #ddd;
+				}
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				$('#datatable-responsive1').DataTable( {
+				responsive: true
+				} );
+				$('#datatable-responsive2').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			#page-title
+				h2 #{flash.title}
+			- if (flash && flash.successmsg && flash.successmsg.length > 0)
+				p.alert.alert-success= flash.successmsg
+			ul#myTab.nav.clearfix.nav-tabs
+				li.events.active
+					a(href='#events', data-toggle='tab') Events
+				li.archiveevent
+					a(href='#archiveevent', data-toggle='tab') Archived
+				li.advanced
+					a(href='#draftevent', data-toggle='tab') Draft Event
+				.col-lg-9(style="margin-bottom:5px;padding:0;float:right;")
+								a.btn.btn-md.float-right.btn-primary(href="/manageEvent/addEvent") Add Event
+			.panel
+				.panel-body
+					.example-box-wrapper
+						#events.tab-pane.fade.active.in(style='padding:0;')
+							table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+								thead
+									tr
+										th S.No.
+										//th Event Image
+										th Event
+										th Date
+										th Promotion
+										th View
+										th Delete
+								tbody
+									- if (allevents)
+										- j = 1
+										- each event, i in allevents
+											- fromdate = moment(event.fromdate).format("DD/MM/YYYY H:mm:ss")
+											- dt = moment(Date.now()).format('DD/MM/YYYY h:mm:ss')
+											- if ( event.draft == 'false' && event.archivedstatus == 'false' && event.publishstatus == 'true')
+												tr
+													td #{j}
+													//td 
+														//img(src='#{event.coverimage}', width='100', height='100')
+													td #{event.eventname}
+													td #{fromdate}
+													td
+														- if (event.featuredstatus == 'false') 
+															a.btn.btn-primary(href='/manageEvent/payment/#{event._id}') Promote
+														- else
+															.btn.btn-default(disabled) Promoted
+													td
+														a.btn.btn-primary(href="/manageEvent/addEvent/#{event._id}")
+															i.glyph-icon.icon-pencil-square-o
+													td
+														a.btn.btn-danger(href="/manageEvent/delEvent/#{event._id}")
+															i.glyph-icon.icon-pencil-square-o
+													- j++
+						#archiveevent.tab-pane.fade(style='padding:0;')
+							table#datatable-responsive1.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+								thead
+									tr
+										th S.No.
+										//th Event Image
+										th Event
+										th Date
+										th View
+								tbody
+									- if (allevents)
+										- j = 1
+										- each event, i in allevents
+											- fromdate = moment(event.fromdate).format("DD/MM/YYYY H:mm:ss")
+											- dt = moment(Date.now()).format('DD/MM/YYYY h:mm:ss a')
+											- if ( event.draft == 'false' && event.archivedstatus == 'true' && event.publishstatus == 'false')
+												tr
+													td #{j}
+													//td 
+														//img(src='#{event.coverimage}', width='100', height='100')
+													td #{event.eventname}
+													td #{fromdate}
+													td
+														a.btn.btn-primary(href="/manageEvent/addEvent/#{event._id}")
+															i.glyph-icon.icon-pencil-square-o
+													- j++
+						#draftevent.tab-pane.fade(style='padding:0;')
+							table#datatable-responsive2.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+								thead
+									tr
+										th S.No.
+										//th Event Image
+										th Event
+										th Date
+										th View
+										th Delete
+								tbody
+									- if (allevents)
+										- j = 1
+										- each event, i in allevents
+											- fromdate = moment(event.fromdate).format("DD/MM/YYYY H:mm:ss")
+											- if ( event.draft == 'true' && event.archivedstatus == 'false' && event.publishstatus == 'false')
+												tr
+													td #{j}
+													//td 
+														//img(src='#{event.coverimage}', width='100', height='100')
+													td #{event.eventname}
+													td #{fromdate}
+													td
+														a.btn.btn-primary(href="/manageEvent/addEvent/#{event._id}")
+															i.glyph-icon.icon-pencil-square-o
+													td
+														a.btn.btn-danger(href="/manageEvent/delEvent/#{event._id}")
+															i.glyph-icon.icon-pencil-square-o
+													- j++
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+		

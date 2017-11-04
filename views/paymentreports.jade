@@ -1,0 +1,122 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			style.
+				#myTab li.active a{
+				background-color:#FFF;
+				color:#a1a1a1;
+				border-color:#ddd;
+				border-bottom-color:transparent;
+				}
+				.panel{
+				    border: none;
+				    border-radius: inherit;
+				    border-left: 1px solid #ddd;
+				    border-bottom: 1px solid #ddd;
+				    border-right: 1px solid #ddd;
+				}
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				$('#datatable-responsive1').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			#page-title
+				h2 #{flash.title}
+			- if (flash && flash.successmsg && flash.successmsg.length > 0)
+				p.alert.alert-success= flash.successmsg
+			ul#myTab.nav.clearfix.nav-tabs
+				li.inpayment.active
+					a(href='#inpayment', data-toggle='tab') In Payments
+				li.outpayment
+					a(href='#outpayment', data-toggle='tab') Out Payments
+			.panel
+				.panel-body
+					.example-box-wrapper
+						#inpayment.tab-pane.fade.active.in(style='padding:0;')
+							#pricedetails(style='margin-top:20px;')
+								.col-sm-2(style='padding:10px;')
+									span
+										b(style='width:75%;') Credit Amount: 
+										b(style='color:orange;font-size:18px;') $#{totalcredit}
+								.col-sm-2(style='padding:10px;')
+									span
+										b Debit Amount: 
+										b(style='color:red;font-size:18px;') - $#{totaldebit}
+								.col-sm-2(style='padding:10px;')
+									span
+										b Remain Amount: 
+										b(style='color:red;font-size:18px;') - $#{remainamount}
+								.col-sm-2(style='padding:10px;')
+									span
+										b Commission Amount: 
+										b(style='color:red;font-size:18px;') - $#{totalcommission}
+
+							table#datatable-reorder.table.table-striped.table-bordered(cellspacing="0", width="100%")
+								thead
+									tr
+										th Date & Time
+										th Event
+										th EndUser
+										th Credit
+										th Debit
+								tbody
+									- if (payments)
+										- j = 1
+										-each payment, i in payments
+											tr
+												td #{payment.dates}
+												td #{payment.eventid.eventname}
+												td #{payment.enduserid.email}
+												td #{payment.credit}
+												td #{payment.debit}
+
+						#outpayment.tab-pane.fade(style='padding:0;')
+							table#datatable-responsive1.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+								thead
+									tr
+										th S.No.
+										th Event Title
+										th Plan Title
+										th Plan Expire Date
+										th Amount
+										th Status
+								tbody
+									- if (allvendorpayment)
+										- j = 1
+										- each vendorpayment, i in allvendorpayment
+											tr
+												td #{j}
+												td #{vendorpayment.eventid.eventname}
+												td #{vendorpayment.plantitle}
+												td #{vendorpayment.planexpiredate}
+												td #{vendorpayment.planprice}
+												td #{vendorpayment.planstatus}
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+		script(type='text/javascript').
+			$(document).ready(function() {
+				$('#datatable-reorder').DataTable( {
+				dom: 'Rlfrtip'
+			});
+
+				$('#datatable-reorder_length').hide();
+				$('#datatable-reorder_filter').hide();
+			});

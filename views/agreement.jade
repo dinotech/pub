@@ -1,0 +1,180 @@
+doctype html
+html
+	head
+		title #{flash.title}
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap/css/bootstrap.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/animate.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/backgrounds.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/boilerplate.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/border-radius.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/grid.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/page-transitions.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/spacing.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/typography.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/utils.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/colors.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/badges.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/buttons.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/content-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/dashboard-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/forms.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/images.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/info-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/invoice.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/loading-indicators.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/menus.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/panel-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/response-messages.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/responsive-tables.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/ribbon.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/social-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/tables.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/tile-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/elements/timeline.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/fontawesome/fontawesome.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/linecons/linecons.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/icons/spinnericon/spinnericon.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/accordion-ui/accordion.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/calendar/calendar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/carousel/carousel.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/justgage/justgage.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/morris/morris.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/piegage/piegage.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/charts/xcharts/xcharts.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/chosen/chosen.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/colorpicker/colorpicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datatable/datatable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker/datepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker-ui/datepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/daterangepicker/daterangepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dialog/dialog.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dropdown/dropdown.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/dropzone/dropzone.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/file-input/fileinput.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/input-switch/inputswitch.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/input-switch/inputswitch-alt.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/ionrangeslider/ionrangeslider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/jcrop/jcrop.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/jgrowl-notifications/jgrowl.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/loading-bar/loadingbar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/maps/vector-maps/vectormaps.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/markdown/markdown.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/modal/modal.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/multi-select/multiselect.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/multi-upload/fileupload.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/nestable/nestable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/noty-notifications/noty.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/popover/popover.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/pretty-photo/prettyphoto.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/progressbar/progressbar.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/range-slider/rangeslider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/slidebars/slidebars.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/slider-ui/slider.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/summernote-wysiwyg/summernote-wysiwyg.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tabs-ui/tabs.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/theme-switcher/themeswitcher.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/timepicker/timepicker.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tocify/tocify.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/tooltip/tooltip.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/touchspin/touchspin.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/uniform/uniform.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/wizard/wizard.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/xeditable/xeditable.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/chat.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/files-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/login-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/notification-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/progress-box.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/todo.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/user-profile.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/snippets/mobile-navigation.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/applications/mailbox.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/admin/layout.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/admin/color-schemes/default.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/components/default.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/themes/components/border-radius.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/responsive-elements.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/helpers/admin-responsive.css')
+		link(rel='manifest', href='../manifest.json')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-core.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-core.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-widget.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-mouse.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-ui-position.js')
+		script(type='text/javascript', src='/javascripts/js-core/modernizr.js')
+		script(type='text/javascript', src='/javascripts/js-core/jquery-cookie.js')
+		script(type='text/javascript').
+			$(window).load(function(){
+			setTimeout(function() {
+			$('#loading').fadeOut( 400, "linear" );
+			}, 300);
+			});
+	body
+		#page-wrapper
+			#page-header.bg-gradient-9
+				#mobile-navigation
+					button#nav-toggle.collapsed(data-toggle='collapse', data-target='#page-sidebar')
+						span
+					a.logo-content-small(href='#', title='MonarchUI')
+				#header-logo.logo-bg
+					a.logo-content-big(href='#', title='MonarchUI')
+						| Monarch 
+						i UI
+						span The perfect solution for user interfaces
+					a.logo-content-small(href='index.html', title='MonarchUI')
+						| Monarch 
+						i UI
+						span The perfect solution for user interfaces
+					a#close-sidebar(href='#', title='Close sidebar')
+						i.glyph-icon.icon-angle-left
+				// #header-nav-left
+				#header-nav-right
+					a#logout-btn.header-btn(href='/logout', title='Logout')
+						i.glyph-icon.icon-power-off
+				// #header-nav-right
+			h2(style='text-align:center;margin:15px 0;text-transform:uppercase;font-weight:bold;text-decoration:underline') #{flash.title}
+			#agreementcontent(style='width:80%;margin:0 auto;') 
+				- if (flash && flash.errormsg && flash.errormsg.length > 0)
+					p.alert.alert-danger= flash.errormsg
+				|	!{agreement.content}
+				form.form-horizontal(action='/updverify/#{flash.userid}', method='post')
+					input(type='hidden', name='endpoint', id='endpoint')
+					input(type='hidden', name='authSecret', id='authSecret')
+					input(type='hidden', name='keys', id='keys')
+					button.btn.btn-primary(type="submit", style="float:right;margin-top:20px;") Accept
+	script(type='text/javascript').
+		var endpoint;
+		var key;
+		var authSecret;
+
+		navigator.serviceWorker.register('/javascripts/js-init/service-worker.js')
+			.then(function(registration) {
+				return registration.pushManager.getSubscription()
+					.then(function(subscription) {
+						if (subscription) {
+							return subscription;
+						}
+
+						return registration.pushManager.subscribe({
+							userVisibleOnly: true
+						});
+					});
+			}).then(function(subscription) {
+				var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+				key = rawKey ?
+					btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
+					'';
+				var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+				authSecret = rawAuthSecret ?
+					btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
+					'';
+
+				endpoint = subscription.endpoint;
+				$('#endpoint').val(endpoint);
+				$('#authSecret').val(authSecret);
+				$('#keys').val(key);
+			}).catch(e => {
+				console.log(e);
+			});
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')

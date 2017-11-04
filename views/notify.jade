@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		link(rel='manifest', href='manifest.json')
+		title Geek-Solutions Push notifications text
+	body
+		#endpoint(style='word-break: break-all;')
+		#key(style='word-break: break-all;')
+		#authkey(style='word-break: break-all;')
+		hr
+		form(action='', method='post')
+			div
+				div
+					label(for='') Delay, s
+					input#endpoint(type='text')
+				div
+					label(for='') TTL, s
+					input#key(type='test')
+				div
+					label(for='') Payload
+					input#authkey(type='text')
+				div
+					button#send(type='submit') Send
+		script(src='/javascripts/js-init/index.js')
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')

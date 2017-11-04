@@ -1,0 +1,175 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			style.
+				#myTab li.active a{
+				background-color:#FFF;
+				color:#a1a1a1;
+				border-color:#ddd;
+				border-bottom-color:transparent;
+				}
+				.panel{
+				    border: none;
+				    border-radius: inherit;
+				    border-left: 1px solid #ddd;
+				    border-bottom: 1px solid #ddd;
+				    border-right: 1px solid #ddd;
+				}
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				$('#datatable-responsive1').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap/css/bootstrap-datetimepicker.min.css')
+			- if (event != '')
+				#page-title
+					.col-sm-4
+						h2 #{flash.title} - #{event.eventname}
+						h6 #{moment(event.fromdate).format("ddd, DD/MM/YYYY, H:mm")} - #{moment(event.todate).format("ddd, DD/MM/YYYY, H:mm")}
+					.col-sm-8(style="text-align:right;position:relative;")
+						a.btn.btn-primary(id="filterbutton") 
+							i.glyph-icon.icon-filter 
+							| Filter
+						.arrow-up
+						#filterblock
+							.col-sm-8(style="padding-bottom:2%")
+								label.radio-inline
+									input(type='radio', name="guestlist", id='eventguestlist')
+									| Events
+								label.radio-inline
+									input(type='radio', name="guestlist", id='dateguestlist' )
+									| Dates
+							select.form-control(name='', id="eventlists", style="display:none;")
+								option Select Event...
+								- if (eventlist)
+									- each event, i in eventlist
+										option(value="/thelist/#{event._id}") #{event.eventname}
+							#datelists(style="display:none;")
+								form.form-horizontal(action='', method='post')
+									.form-group
+										.col-sm-6
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='fromdate', name='fromdate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='From Date' required)
+										.col-sm-6
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='todate', name='todate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='To Date' required)
+									.bg-default.text-center
+										button.btn.btn-primary(type='button', id='apply', name='apply') Apply
+					div(style="clear:both;")
+					#theme-options.admin-options(style='display:none;')
+						a.btn.btn-primary.theme-switcher.tooltip-button(href='javascript:void(0);', data-placement='left', title='Color schemes and layout options')
+							i.glyph-icon.icon-linecons-cog.icon-spin
+						
+				- if (flash && flash.successmsg && flash.successmsg.length > 0)
+					p.alert.alert-success= flash.successmsg
+				ul#myTab.nav.clearfix.nav-tabs
+					li.thelist.active
+						a(href='#thelist', data-toggle='tab') The List
+					li.tablebooking
+						a(href='#tablebooking', data-toggle='tab') Table Booking
+				.panel
+					.panel-body
+						.example-box-wrapper
+							#thelist.tab-pane.fade.active.in(style='padding:0;')
+								table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+									thead
+										tr
+											th Name
+											th Email
+											th Booking Reference
+											th Booking Date
+											th Type
+											th Status
+											th Manual Validation
+									tbody
+										- each guestlist, i in guestlists
+											- if ( guestlist.tabletype == 'Ticket' || guestlist.tabletype == 'RSVP')
+												tr(style="background-color:#f2dede;")
+													td #{guestlist.enduserid.firstname} #{guestlist.enduserid.lastname}
+													td #{guestlist.enduserid.email}
+													td #{guestlist.bookingreference}
+													td #{guestlist.bookingdate}
+													td #{guestlist.tabletype}
+													td #{guestlist.status}
+													td 
+														a.btn.btn-primary(href="#", style="margin-right: 5px;", title="Accept")
+																i.glyph-icon.icon-check
+														a.btn.btn-danger(href="#", style="margin-right: 5px;", title="Reject")
+																i.glyph-icon.icon-times
+
+							#tablebooking.tab-pane.fade(style='padding:0;')
+								table#datatable-responsive1.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+									thead
+										tr
+											th Name
+											th Email
+											th Booking Reference
+											th Booking Date
+											th Table Type
+											th Status
+											th Request
+									tbody
+										- each guestlist, i in guestlists
+											- if ( guestlist.tabletype == 'Standard Table' || guestlist.tabletype == 'Premium Table' || guestlist.tabletype == 'VIP Table')
+												tr
+													td #{guestlist.enduserid.firstname} #{guestlist.enduserid.lastname}
+													td #{guestlist.enduserid.email}
+													td #{guestlist.bookingreference}
+													td #{guestlist.bookingdate}
+													td #{guestlist.tabletype}
+													td #{guestlist.status}
+													td 
+														a.btn.btn-primary(href="/thelist/requestaccepted/#{guestlist._id}", style="margin-right: 5px;", title="Accept")
+																i.glyph-icon.icon-check
+														a.btn.btn-danger(href="/thelist/requestcancelled/#{guestlist._id}", style="margin-right: 5px;", title="Reject")
+																i.glyph-icon.icon-times
+														a.btn.btn-primary(href="#") Aleternate Offer
+			- else
+				h1 Currently User List Not Available				
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')							
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap-datetimepicker.min.js')
+		script(type='text/javascript').
+			$('#eventguestlist').click(function(){
+				$('#datelists').css('display', 'none');
+				$('#eventlists').css('display', 'block');
+			});
+			$('#dateguestlist').click(function(){
+				$('#eventlists').css('display', 'none');
+				$('#datelists').css('display', 'block');
+			});
+			$(function() { "use strict";
+			$('.datetimepicker').datetimepicker({
+			language: 'en',
+			pick12HourFormat: true
+			});
+			});
+			$( "#eventlists" ).change(function() {
+				location.href = $(this).val();
+			});
+			$("#filterbutton").click(function(){
+				$(".arrow-up").toggle(200);
+				$("#filterblock").toggle(200);
+			});

@@ -1,0 +1,265 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Sparklines charts
+			script(type='text/javascript', src='/stylesheets/widgets/charts/sparklines/sparklines.js')
+			script(type='text/javascript', src='/stylesheets/widgets/charts/sparklines/sparklines-demo.js')
+			
+			#page-title
+				h2 Dashboard
+				p
+					| The most complete user interface framework that can be used to create stunning admin dashboards and presentation websites.
+			input(type='hidden', id='userpublishablekey', value="#{keys.userpublishablekey}")
+			input(type='hidden', id='usersecretkey', value="#{keys.usersecretkey}")
+			.row
+				.col-md-4
+					.dashboard-box.dashboard-box-chart.bg-white.content-box
+						.content-wrapper
+							.header
+								| #{totalevent}
+								span
+									b Total Event
+							.center-div.sparkline-big-alt #{active},#{archive},#{draft}
+							.row.list-grade(style="margin-right:0px;margin-left:0px;")
+								.col-md-4(style='text-align: left;') Acitve
+								.col-md-4 Archived
+								.col-md-4(style='text-align: right;') Draft
+						.button-pane
+							.size-md.float-left
+								a(href='#', title='')
+									| Event Detail
+							a.btn.btn-default.float-right.tooltip-button(href='/manageEvent', data-placement='top', title='View details')
+								i.glyph-icon.icon-angle-right
+				- if (guestlist)
+					.col-md-4
+						.dashboard-box.dashboard-box-chart.bg-white.content-box
+							.content-wrapper
+								.header
+									| #{guestlist.totaluser}
+									span
+										| Upcoming Event
+										b(style="font-size:18px;")  #{guestlist.eventname}
+										|  Guest List
+								.center-div.sparkline-big-alt #{guestlist.ticket},#{guestlist.rsvp},#{guestlist.table}
+								.row.list-grade
+									.col-md-4(style='text-align: left;') Ticket
+									.col-md-4 RSVP
+									.col-md-4(style='text-align: right;') Table
+							.button-pane
+								.size-md.float-left
+									a(href='#', title='')
+										| Guest List Detail
+								a.btn.btn-default.float-right.tooltip-button(href='/thelist', data-placement='top', title='View details')
+									i.glyph-icon.icon-angle-right
+				//
+					.col-md-4
+						.dashboard-box.dashboard-box-chart.bg-white.content-box
+							.content-wrapper
+								.header
+									| 8960
+									span
+										| Total Downloads
+										b  in last
+										|  6 years
+								.bs-label.bg-orange ~51%
+								.center-div.sparkline-big-alt 2210,2310,2010,2310,2123,2350
+								.row.list-grade
+									.col-md-2 2009
+									.col-md-2 2010
+									.col-md-2 2011
+									.col-md-2 2012
+									.col-md-2 2013
+									.col-md-2 2014
+							.button-pane
+								.size-md.float-left
+									a(href='#', title='')
+										| View more details
+								a.btn.btn-primary.float-right.tooltip-button(href='#', data-placement='top', title='View details')
+									i.glyph-icon.icon-caret-right
+			//
+				.row
+					.col-md-8
+						.panel
+							.panel-body
+								h3.title-hero
+									| Recent sales activity
+								.example-box-wrapper
+									#data-example-1.mrg20B(style='width: 100%; height: 300px;')
+						.row
+							.col-md-4
+								a.tile-box.tile-box-alt.primary(href='#', title='Example tile shortcut')
+									.tile-header
+										| Photo Gallery
+									.tile-content-wrapper
+										.chart-alt-10(data-percent='43')
+											span 43
+											| %
+							.col-md-4
+								a.tile-box.tile-box-alt.btn-info(href='#', title='Example tile shortcut')
+									.tile-header
+										| Subscriptions
+									.tile-content-wrapper
+										.chart-alt-10(data-percent='76')
+											span 76
+											| %
+							.col-md-4
+								a.tile-box.tile-box-alt.btn-warning(href='#', title='Example tile shortcut')
+									.tile-header
+										| New Visitors
+									.tile-content-wrapper
+										.chart-alt-10(data-percent='11')
+											span 11
+											| %
+						.content-box.mrg20T
+							h3.content-box-header.bg-primary
+								| Toggle button closed
+								span.header-buttons-separator
+									a.icon-separator.toggle-button(href='#')
+										i.glyph-icon.icon-chevron-down
+							.content-box-wrapper.hide
+								| This content boxes has the header with 
+								code .bg-default
+								| .
+						.content-box
+							h3.content-box-header.bg-default
+								i.glyph-icon.icon-cog
+								| 									Live server status
+								span.header-buttons-separator
+									a.icon-separator(href='#')
+										i.glyph-icon.icon-question
+									a.icon-separator.refresh-button(href='#', data-style='dark', data-theme='bg-white', data-opacity='40')
+										i.glyph-icon.icon-refresh
+									a.icon-separator.remove-button(href='#', data-animation='flipOutX')
+										i.glyph-icon.icon-times
+							.content-box-wrapper
+								#data-example-3(style='width: 100%; height: 250px;')
+					.col-md-4
+						.row.mrg20B
+							.col-md-6
+								a.tile-box.tile-box-shortcut.btn-primary(href='#', title='Example tile shortcut')
+									span.bs-badge.badge-absolute 5
+									.tile-header
+										| Dashboard
+									.tile-content-wrapper
+										i.glyph-icon.icon-dashboard
+							.col-md-6
+								a.tile-box.tile-box-shortcut.btn-black(href='#', title='Example tile shortcut')
+									span.bs-badge.badge-absolute 5
+									.tile-header
+										| Orders
+									.tile-content-wrapper
+										i.glyph-icon.icon-cogs
+						.panel
+							.panel-body
+								h3.title-hero
+									| Users activity
+								.example-box-wrapper
+									.timeline-box.timeline-box-left
+										.tl-row
+											.tl-item.float-right
+												.tl-icon.bg-red
+													i.glyph-icon.icon-toggle-on
+												.popover.right
+													.arrow
+													.popover-content
+														.tl-label.bs-label.label-info Appointment
+														p.tl-content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. 
+														.tl-time
+															i.glyph-icon.icon-clock-o
+															| 																a few seconds ago
+										.tl-row
+											.tl-item.float-right
+												.tl-icon.bg-primary
+													i.glyph-icon.icon-wifi
+												.popover.right
+													.arrow
+													.popover-content
+														.tl-label.bs-label.bg-yellow Teleconference
+														p.tl-content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. 
+														.tl-time
+															i.glyph-icon.icon-clock-o
+															| 																a few seconds ago
+										.tl-row
+											.tl-item.float-right
+												.tl-icon.bg-black
+													i.glyph-icon.icon-headphones
+												.popover.right
+													.arrow
+													.popover-content
+														.tl-label.bs-label.label-danger Meeting
+														p.tl-content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. 
+														.tl-time
+															i.glyph-icon.icon-clock-o
+															| 																a few seconds ago
+						.content-box.bg-white.post-box
+							textarea.textarea-autosize(name='', placeholder='What are you doing right now?')
+							.button-pane
+								a.btn.btn-md.btn-link.hover-white(href='#', title='')
+									i.glyph-icon.icon-volume-down
+								a.btn.btn-md.btn-link.hover-white(href='#', title='')
+									i.glyph-icon.icon-video-camera
+								a.btn.btn-md.btn-link.hover-white(href='#', title='')
+									i.glyph-icon.icon-microphone
+								a.btn.btn-md.btn-link.hover-white(href='#', title='')
+									i.glyph-icon.icon-picture-o
+								a.btn.btn-md.btn-post.float-right.btn-primary(href='#', title='')
+									| Post
+						.panel
+							.panel-body
+								ul.todo-box
+									li.border-red
+										input#todo-1(type='checkbox', name='todo-1')
+										label(for='todo-1') This is an example task that i need to finish
+										span.bs-label.bg-red(title='') Overdue
+										a.btn.btn-xs.btn-danger.float-right(href='#', title='')
+											i.glyph-icon.icon-remove
+										a.btn.btn-xs.btn-primary.float-right(href='#', title='')
+											i.glyph-icon.icon-check
+									li.border-orange
+										input#todo-2(type='checkbox', name='todo-2')
+										label(for='todo-2') Update server to a newer version
+										span.bs-label.bg-green(title='') 2 Weeks
+										a.btn.btn-xs.btn-danger.float-right(href='#', title='')
+											i.glyph-icon.icon-remove
+										a.btn.btn-xs.btn-primary.float-right(href='#', title='')
+											i.glyph-icon.icon-check
+									li.border-blue
+										input#todo-3(type='checkbox', name='todo-3')
+										label(for='todo-3') Add more awesome template features
+										span.bs-label.bg-blue(title='') Tomorrow
+										a.btn.btn-xs.btn-danger.float-right(href='#', title='')
+											i.glyph-icon.icon-remove
+										a.btn.btn-xs.btn-primary.float-right(href='#', title='')
+											i.glyph-icon.icon-check
+									li.border-purple
+										input#todo-4(type='checkbox', name='todo-4')
+										label(for='todo-4') Never forget to buy milk
+										span.bs-label.bg-black(title='') Today
+										a.btn.btn-xs.btn-danger.float-right(href='#', title='')
+											i.glyph-icon.icon-remove
+										a.btn.btn-xs.btn-primary.float-right(href='#', title='')
+											i.glyph-icon.icon-check
+
+			#myModal.modal.fade
+				.modal-dialog
+					.modal-content
+						.modal-header
+							button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+							h4.modal-title Do First
+						.modal-body
+							b Please Insert Publishable Key & Secret Key of Your Stripe Account in Profile Tab.
+							br
+							a.btn.float-right.btn-primary(href="/manageVendor/editVendor/#{flash.id}") Ok
+							div(style="clear:both;") 
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')				
+		script(type='text/javascript').
+			$(document).ready(function(){
+				var userpublishablekey = $('#userpublishablekey').val();
+				var usersecretkey = $('#usersecretkey').val();
+				if(userpublishablekey == '' || usersecretkey == ''){
+					$("#myModal").modal('show');
+				}
+			});

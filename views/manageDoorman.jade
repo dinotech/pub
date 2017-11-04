@@ -1,0 +1,61 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			#page-title
+				h2 #{flash.title}
+			.panel
+				.panel-body
+					.example-box-wrapper
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+						- if (flash && flash.successdel && flash.successdel.length > 0)
+							p.alert.alert-success= flash.successdel
+						.col-lg-12(style="margin-bottom:10px;padding:0;")
+							a.btn.btn-md.float-right.btn-primary(href="/manageDoorman/addDoorman") Add Doorman
+						table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+							thead
+								tr
+									th S.No.
+									th Doorman Name
+									th Email
+									th View
+									th Delete
+							tbody
+								- if (alldoorman)
+									- j = 1
+									- each doorman, i in alldoorman
+										tr
+											td #{j}
+											td #{doorman.firstname} #{doorman.lastname}
+											td #{doorman.email}
+											td
+												a.btn.btn-primary(href="/manageDoorman/addDoorman/#{doorman._id}")
+													i.glyph-icon.icon-pencil-square-o
+											td
+												a.btn.btn-danger(href="/manageDoorman/delDoorman/#{doorman._id}")
+													i.glyph-icon.icon-pencil-square-o
+											- j++
+								
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')

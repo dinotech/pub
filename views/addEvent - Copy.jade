@@ -1,0 +1,464 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// jQueryUI Spinner
+			script(type='text/javascript', src='/stylesheets/widgets/spinner/spinner.js')
+			script(type='text/javascript').
+				/* jQuery UI Spinner */
+				$(function() { "use strict";
+				$(".spinner-input").spinner();
+				});
+			// jQueryUI Autocomplete
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/menu.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete-demo.js')
+			// Touchspin
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/touchspin/touchspin.css">
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin.js')
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			// Multi select
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/multi-select/multiselect.css">
+			script(type='text/javascript', src='/stylesheets/widgets/multi-select/multiselect.js')
+			script(type='text/javascript').
+				/* Multiselect inputs */
+				$(function() { "use strict";
+				$(".multi-select").multiSelect();
+				$(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
+				});
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			// DatePicker
+			link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap/css/bootstrap-datetimepicker.min.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/frontend-elements/pricing-table.css')
+
+			#page-title
+				h2 #{flash.title}
+				#theme-options.admin-options
+					a.btn.btn-primary.theme-switcher.tooltip-button(href='javascript:void(0);', data-placement='left', title='Color schemes and layout options')
+						i.glyph-icon.icon-linecons-cog.icon-spin
+					#theme-switcher-wrapper
+						.scroll-switcher
+							h5.header Layout options
+							ul.reset-ul
+								li
+									label(for='boxed-layout') Boxed layout
+									input#boxed-layout.input-switch-alt(type='checkbox', data-toggletarget='boxed-layout')
+								li
+									label(for='fixed-header') Fixed header
+									input#fixed-header.input-switch-alt(type='checkbox', data-toggletarget='fixed-header')
+								li
+									label(for='fixed-sidebar') Fixed sidebar
+									input#fixed-sidebar.input-switch-alt(type='checkbox', data-toggletarget='fixed-sidebar')
+								li
+									label(for='closed-sidebar') Closed sidebar
+									input#closed-sidebar.input-switch-alt(type='checkbox', data-toggletarget='closed-sidebar')
+							.boxed-bg-wrapper.hide
+								h5.header
+									| Boxed Page Background
+									a.set-background-style(data-header-bg='', title='Remove all styles', href='javascript:void(0);') Clear
+								.theme-color-wrapper.clearfix
+									h5 Patterns
+									a.tooltip-button.set-background-style.pattern-bg-3(data-header-bg='pattern-bg-3', title='Pattern 3', href='javascript:void(0);') Pattern 3
+									a.tooltip-button.set-background-style.pattern-bg-4(data-header-bg='pattern-bg-4', title='Pattern 4', href='javascript:void(0);') Pattern 4
+									a.tooltip-button.set-background-style.pattern-bg-5(data-header-bg='pattern-bg-5', title='Pattern 5', href='javascript:void(0);') Pattern 5
+									a.tooltip-button.set-background-style.pattern-bg-6(data-header-bg='pattern-bg-6', title='Pattern 6', href='javascript:void(0);') Pattern 6
+									a.tooltip-button.set-background-style.pattern-bg-7(data-header-bg='pattern-bg-7', title='Pattern 7', href='javascript:void(0);') Pattern 7
+									a.tooltip-button.set-background-style.pattern-bg-8(data-header-bg='pattern-bg-8', title='Pattern 8', href='javascript:void(0);') Pattern 8
+									a.tooltip-button.set-background-style.pattern-bg-9(data-header-bg='pattern-bg-9', title='Pattern 9', href='javascript:void(0);') Pattern 9
+									a.tooltip-button.set-background-style.pattern-bg-10(data-header-bg='pattern-bg-10', title='Pattern 10', href='javascript:void(0);') Pattern 10
+									.clear
+									h5.mrg15T Solids &Images
+									a.tooltip-button.set-background-style.bg-black(data-header-bg='bg-black', title='Black', href='javascript:void(0);') Black
+									a.tooltip-button.set-background-style.bg-gray.mrg10R(data-header-bg='bg-gray', title='Gray', href='javascript:void(0);') Gray
+									a.tooltip-button.set-background-style.full-bg-1(data-header-bg='full-bg-1 fixed-bg', title='Image 1', href='javascript:void(0);') Image 1
+									a.tooltip-button.set-background-style.full-bg-2(data-header-bg='full-bg-2 fixed-bg', title='Image 2', href='javascript:void(0);') Image 2
+									a.tooltip-button.set-background-style.full-bg-3(data-header-bg='full-bg-3 fixed-bg', title='Image 3', href='javascript:void(0);') Image 3
+									a.tooltip-button.set-background-style.full-bg-4(data-header-bg='full-bg-4 fixed-bg', title='Image 4', href='javascript:void(0);') Image 4
+									a.tooltip-button.set-background-style.full-bg-5(data-header-bg='full-bg-5 fixed-bg', title='Image 5', href='javascript:void(0);') Image 5
+									a.tooltip-button.set-background-style.full-bg-6(data-header-bg='full-bg-6 fixed-bg', title='Image 6', href='javascript:void(0);') Image 6
+							h5.header
+								| Header Style
+								a.set-adminheader-style(data-header-bg='bg-gradient-9', title='Remove all styles', href='javascript:void(0);') Clear
+							.theme-color-wrapper.clearfix
+								h5 Solids
+								a.tooltip-button.set-adminheader-style.bg-primary(data-header-bg='bg-primary font-inverse', title='Primary', href='javascript:void(0);') Primary
+								a.tooltip-button.set-adminheader-style.bg-green(data-header-bg='bg-green font-inverse', title='Green', href='javascript:void(0);') Green
+								a.tooltip-button.set-adminheader-style.bg-red(data-header-bg='bg-red font-inverse', title='Red', href='javascript:void(0);') Red
+								a.tooltip-button.set-adminheader-style.bg-blue(data-header-bg='bg-blue font-inverse', title='Blue', href='javascript:void(0);') Blue
+								a.tooltip-button.set-adminheader-style.bg-warning(data-header-bg='bg-warning font-inverse', title='Warning', href='javascript:void(0);') Warning
+								a.tooltip-button.set-adminheader-style.bg-purple(data-header-bg='bg-purple font-inverse', title='Purple', href='javascript:void(0);') Purple
+								a.tooltip-button.set-adminheader-style.bg-black(data-header-bg='bg-black font-inverse', title='Black', href='javascript:void(0);') Black
+								.clear
+								h5.mrg15T Gradients
+								a.tooltip-button.set-adminheader-style.bg-gradient-1(data-header-bg='bg-gradient-1 font-inverse', title='Gradient 1', href='javascript:void(0);') Gradient 1
+								a.tooltip-button.set-adminheader-style.bg-gradient-2(data-header-bg='bg-gradient-2 font-inverse', title='Gradient 2', href='javascript:void(0);') Gradient 2
+								a.tooltip-button.set-adminheader-style.bg-gradient-3(data-header-bg='bg-gradient-3 font-inverse', title='Gradient 3', href='javascript:void(0);') Gradient 3
+								a.tooltip-button.set-adminheader-style.bg-gradient-4(data-header-bg='bg-gradient-4 font-inverse', title='Gradient 4', href='javascript:void(0);') Gradient 4
+								a.tooltip-button.set-adminheader-style.bg-gradient-5(data-header-bg='bg-gradient-5 font-inverse', title='Gradient 5', href='javascript:void(0);') Gradient 5
+								a.tooltip-button.set-adminheader-style.bg-gradient-6(data-header-bg='bg-gradient-6 font-inverse', title='Gradient 6', href='javascript:void(0);') Gradient 6
+								a.tooltip-button.set-adminheader-style.bg-gradient-7(data-header-bg='bg-gradient-7 font-inverse', title='Gradient 7', href='javascript:void(0);') Gradient 7
+								a.tooltip-button.set-adminheader-style.bg-gradient-8(data-header-bg='bg-gradient-8 font-inverse', title='Gradient 8', href='javascript:void(0);') Gradient 8
+							h5.header
+								| Sidebar Style
+								a.set-sidebar-style(data-header-bg='', title='Remove all styles', href='javascript:void(0);') Clear
+							.theme-color-wrapper.clearfix
+								h5 Solids
+								a.tooltip-button.set-sidebar-style.bg-primary(data-header-bg='bg-primary font-inverse', title='Primary', href='javascript:void(0);') Primary
+								a.tooltip-button.set-sidebar-style.bg-green(data-header-bg='bg-green font-inverse', title='Green', href='javascript:void(0);') Green
+								a.tooltip-button.set-sidebar-style.bg-red(data-header-bg='bg-red font-inverse', title='Red', href='javascript:void(0);') Red
+								a.tooltip-button.set-sidebar-style.bg-blue(data-header-bg='bg-blue font-inverse', title='Blue', href='javascript:void(0);') Blue
+								a.tooltip-button.set-sidebar-style.bg-warning(data-header-bg='bg-warning font-inverse', title='Warning', href='javascript:void(0);') Warning
+								a.tooltip-button.set-sidebar-style.bg-purple(data-header-bg='bg-purple font-inverse', title='Purple', href='javascript:void(0);') Purple
+								a.tooltip-button.set-sidebar-style.bg-black(data-header-bg='bg-black font-inverse', title='Black', href='javascript:void(0);') Black
+								.clear
+								h5.mrg15T Gradients
+								a.tooltip-button.set-sidebar-style.bg-gradient-1(data-header-bg='bg-gradient-1 font-inverse', title='Gradient 1', href='javascript:void(0);') Gradient 1
+								a.tooltip-button.set-sidebar-style.bg-gradient-2(data-header-bg='bg-gradient-2 font-inverse', title='Gradient 2', href='javascript:void(0);') Gradient 2
+								a.tooltip-button.set-sidebar-style.bg-gradient-3(data-header-bg='bg-gradient-3 font-inverse', title='Gradient 3', href='javascript:void(0);') Gradient 3
+								a.tooltip-button.set-sidebar-style.bg-gradient-4(data-header-bg='bg-gradient-4 font-inverse', title='Gradient 4', href='javascript:void(0);') Gradient 4
+								a.tooltip-button.set-sidebar-style.bg-gradient-5(data-header-bg='bg-gradient-5 font-inverse', title='Gradient 5', href='javascript:void(0);') Gradient 5
+								a.tooltip-button.set-sidebar-style.bg-gradient-6(data-header-bg='bg-gradient-6 font-inverse', title='Gradient 6', href='javascript:void(0);') Gradient 6
+								a.tooltip-button.set-sidebar-style.bg-gradient-7(data-header-bg='bg-gradient-7 font-inverse', title='Gradient 7', href='javascript:void(0);') Gradient 7
+								a.tooltip-button.set-sidebar-style.bg-gradient-8(data-header-bg='bg-gradient-8 font-inverse', title='Gradient 8', href='javascript:void(0);') Gradient 8
+			ul#myTab.nav.clearfix.nav-tabs
+				li.basic.active
+					a(href='#basic', data-toggle='tab') Basic
+				li.medias
+					a(href='#media', data-toggle='tab') Media
+				li.advanced
+					a(href='#advanced', data-toggle='tab') Advanced
+				li.promotion
+					a(id='promotion', data-toggle='tab') Promotion
+			.panel
+				.panel-body
+					.example-box-wrapper.phase1
+						#myTabContent.tab-content
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+						form.form-horizontal.bordered-row(action='', method='post', enctype='multipart/form-data')
+							input.form-control(type='hidden', id='', name="userid", value='#{flash.id}')
+							- if (event)
+								input.form-control(type='hidden', id='', name="oldcoverimage", value='#{event.coverimage}')
+								input.form-control(type='hidden', id='', name="oldeventimage", value='#{event.eventimage}')
+								#basic.tab-pane.fade.active.in
+									.form-group
+										label.col-sm-3.control-label Title:
+										.col-sm-6
+											input.form-control(type='text', id='', placeholder='Event Name...', name="eventname", value='#{event.eventname}')
+									.form-group
+										label.col-sm-3.control-label Date & Time:
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='', name='fromdate', data-format='dd/mm/yyyy HH:mm:ss PP', placeholder='From Date', value='#{event.fromdate}')
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='', name='todate', data-format='dd/mm/yyyy HH:mm:ss PP', placeholder='To Date', value='#{event.todate}')
+									.form-group
+										label.col-sm-3.control-label Entry Fee:
+										.col-sm-6
+											input.form-control(type='text', id='', placeholder='Entry Fee...', name="entryfee", value='#{event.entryfee}')
+									.form-group
+										label.col-sm-3.control-label Details:
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='eventdetails', rows='3' ) #{event.eventdetails}
+									.form-group
+										label.col-sm-3.control-label Genres
+										.col-sm-6
+											select.chosen-select(name='genres', multiple, data-placeholder='Select multiple Genres...')
+												option Hip-Hop
+												option Rock
+												option Jazz
+												option Pop
+												option Reggae
+												option R&B
+												option Blues
+												option Country
+									.form-group
+										label.col-sm-3.control-label DJ:
+										.col-sm-6
+											select.chosen-select(name='dj', multiple, data-placeholder='Select multiple DJ...')
+												- each dj, i in alldj
+													option(value='#{dj._id}') #{dj.djname}
+									.bg-default.text-center
+										a#nxtmedia.btn.btn-lg.btn-primary(href='#media', data-toggle='tab') Next
+								#media.tab-pane.fade
+									.form-group
+										label.col-sm-3.control-label Cover Image:
+										.col-sm-6
+											input.form-control(type='file', name="coverimage" )
+									.form-group
+										label.col-sm-3.control-label Slider Images:
+										.col-sm-6
+											input.form-control(type='file', name="eventimage", multiple )
+										.col-sm-3 (you can insert multiple images.)
+									.bg-default.text-center
+										a#nxtadvanced.btn.btn-lg.btn-primary(href='#advanced', data-toggle='tab') Next
+								#advanced.tab-pane.fade
+									.form-group
+										label.col-sm-3.control-label STANDARD TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="stdgusetlimit", value='#{event.standardtable[0].guestlimit}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="stdtablecount", value='#{event.standardtable[0].tablecount}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="stdtableprice", value='#{event.standardtable[0].tableprice}')
+									.form-group
+										label.col-sm-3.control-label PREMIUM TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="pregusetlimit", value='#{event.premiumtable[0].guestlimit}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="pretablecount", value='#{event.premiumtable[0].tablecount}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="pretableprice", value='#{event.premiumtable[0].tableprice}')
+									.form-group
+										label.col-sm-3.control-label VIP TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="vipgusetlimit", value='#{event.viptable[0].guestlimit}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="viptablecount", value='#{event.viptable[0].tablecount}')
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="viptableprice", value='#{event.viptable[0].tableprice}')
+									.bg-default.text-center
+										button.btn.btn-lg.btn-primary(type='submit') Save
+
+							- else
+								#basic.tab-pane.fade.active.in
+									.form-group
+										label.col-sm-3.control-label Title:
+										.col-sm-6
+											input.form-control(type='text', id='', placeholder='Event Name...', name="eventname" required)
+									.form-group
+										label.col-sm-3.control-label Date & Time:
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='', name='fromdate', data-format='dd/MM/yyyy HH:mm:ss PP', placeholder='From Date' required)
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='', name='todate', data-format='dd/MM/yyyy HH:mm:ss PP', placeholder='To Date' required)
+									.form-group
+										label.col-sm-3.control-label Entry Fee:
+										.col-sm-6
+											input.form-control(type='text', id='', placeholder='Entry Fee...', name="entryfee" required)
+									.form-group
+										label.col-sm-3.control-label Details:
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='eventdetails', rows='3' required)
+									.form-group
+										label.col-sm-3.control-label Genres
+										.col-sm-6
+											select.chosen-select(name='genres', multiple, data-placeholder='Select multiple Genres...' required)
+												option Hip-Hop
+												option Rock
+												option Jazz
+												option Pop
+												option Reggae
+												option R&B
+												option Blues
+												option Country
+									.form-group
+										label.col-sm-3.control-label DJ:
+										.col-sm-6
+											select.chosen-select(name='dj', multiple, data-placeholder='Select multiple DJ...' required)
+												- each dj, i in alldj
+													option(value='#{dj._id}') #{dj.djname}
+									.bg-default.text-center
+										a#nxtmedia.btn.btn-lg.btn-primary(href='#media', data-toggle='tab') Next
+								#media.tab-pane.fade
+									.form-group
+										label.col-sm-3.control-label Cover Image:
+										.col-sm-6
+											input.form-control(type='file', name="coverimage" required)
+									.form-group
+										label.col-sm-3.control-label Slider Images:
+										.col-sm-6
+											input.form-control(type='file', name="eventimage", multiple required)
+										.col-sm-3 (you can insert multiple images.)
+									.bg-default.text-center
+										a#nxtadvanced.btn.btn-lg.btn-primary(href='#advanced', data-toggle='tab') Next
+								#advanced.tab-pane.fade
+									.form-group
+										label.col-sm-3.control-label STANDARD TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="stdgusetlimit" requiredrequired)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="stdtablecount" required)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="stdtableprice" required)
+									.form-group
+										label.col-sm-3.control-label PREMIUM TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="pregusetlimit" required)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="pretablecount" required)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="pretableprice" required)
+									.form-group
+										label.col-sm-3.control-label VIP TABLE:
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Up to Guest', name="vipgusetlimit" required)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='No. of Table', name="viptablecount" required)
+										.col-sm-2
+											input.form-control(type='text', id='', placeholder='Table Price', name="viptableprice" required)
+									.bg-default.text-center
+										button.btn.btn-lg.btn-primary(type='submit') Save
+					.example-box-wrapper.phase2
+						.pricing-box-alt.row.clearfix(style='text-align:center;')
+							- if (plans)
+								- each plan, i in plans
+									- finalprice = plan.planprice*100 
+									.col-md-3.individual-plan
+										.plan-header
+											h4 #{plan.plantitle}
+											.plan-price
+												small $
+												| #{plan.planprice}
+											a.btn.btn-default.select-pricing-plan(href='#') Buy Now
+										ul
+											li.header
+											li #{plan.planduration} months
+										form(action='/manageEvent/payment', method='post', style='margin:15px;')
+											script(src='https://checkout.stripe.com/checkout.js',
+													class='stripe-button',
+													data-key='pk_test_oEHhSFGSou3hSDaei5DtroIx',
+													data-amount='#{finalprice}',
+													data-name='Featured Plan',
+													data-description='',
+													data-locale='',
+													data-currency='usd')
+											input(type='hidden', name='chargeamount', value='#{plan.planprice}')
+										//.pricing-btn
+											//a.btn.btn-black.select-pricing-plan(href='#')
+												//| Buy Now
+						//	
+							.col-md-3.studio-plan
+								.plan-header
+									h4 Studio
+									.plan-price
+										small $
+										| 69
+									a.btn.btn-default.select-pricing-plan(href='#') Buy Now
+								ul
+									li.header
+									li 6 months
+								.pricing-btn
+									a.btn.btn-black.select-pricing-plan(href='#')
+										| Buy Now
+							.col-md-3.unlimited-plan
+								.plan-header
+									h4 Unlimited
+									.plan-price
+										small $
+										| 99
+									a.btn.btn-default.select-pricing-plan(href='#') Buy Now
+								ul
+									li.header
+									li 12 months
+								.pricing-btn
+									a.btn.btn-black.select-pricing-plan(href='#')
+										| Buy Now
+
+
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap-datetimepicker.min.js')
+	script(type='text/javascript').
+		$(function() { "use strict";
+		$('.datetimepicker').datetimepicker({
+		language: 'en',
+		pick12HourFormat: true
+		});
+		});
+		$('#nxtmedia').click(function(){
+			$('.basic').removeClass('active');
+			$('.addvanced').removeClass('active');
+			$('.medias').addClass('active');
+		});
+		$('#nxtadvanced').click(function(){
+			$('.medias').removeClass('active');
+			$('.advanced').addClass('active');
+		});
+		$('.basic').click(function(){
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+		});
+		$('.medias').click(function(){
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+		});
+		$('.advanced').click(function(){
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+		});
+		$('#promotion').click(function(){
+			$('.phase1').css('display', 'none');
+			$('.phase2').css('display', 'block');
+		});
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+	// Bootstrap Dropdown
+	// <script type="text/javascript" src="/stylesheets/widgets/dropdown/dropdown.js"></script>
+	// Bootstrap Tooltip
+	// <script type="text/javascript" src="/stylesheets/widgets/tooltip/tooltip.js"></script>
+	// Bootstrap Popover
+	// <script type="text/javascript" src="/stylesheets/widgets/popover/popover.js"></script>
+	// Bootstrap Progress Bar
+	script(type='text/javascript', src='/stylesheets/widgets/progressbar/progressbar.js')
+	// Bootstrap Buttons
+	// <script type="text/javascript" src="/stylesheets/widgets/button/button.js"></script>
+	// Bootstrap Collapse
+	// <script type="text/javascript" src="/stylesheets/widgets/collapse/collapse.js"></script>
+	// Superclick
+	script(type='text/javascript', src='/stylesheets/widgets/superclick/superclick.js')
+	// Input switch alternate
+	script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch-alt.js')
+	// Slim scroll
+	script(type='text/javascript', src='/stylesheets/widgets/slimscroll/slimscroll.js')
+	// Slidebars
+	script(type='text/javascript', src='/stylesheets/widgets/slidebars/slidebars.js')
+	script(type='text/javascript', src='/stylesheets/widgets/slidebars/slidebars-demo.js')
+	// PieGage
+	script(type='text/javascript', src='/stylesheets/widgets/charts/piegage/piegage.js')
+	script(type='text/javascript', src='/stylesheets/widgets/charts/piegage/piegage-demo.js')
+	// Screenfull
+	script(type='text/javascript', src='/stylesheets/widgets/screenfull/screenfull.js')
+	// Content box
+	script(type='text/javascript', src='/stylesheets/widgets/content-box/contentbox.js')
+	// Overlay
+	script(type='text/javascript', src='/stylesheets/widgets/overlay/overlay.js')
+	// Widgets init for demo
+	script(type='text/javascript', src='/javascripts/js-init/widgets-init.js')
+	// Theme layout
+	script(type='text/javascript', src='/stylesheets/themes/admin/layout.js')
+	// Theme switcher
+	script(type='text/javascript', src='/stylesheets/widgets/theme-switcher/themeswitcher.js')

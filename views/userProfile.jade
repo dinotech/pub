@@ -1,0 +1,365 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Boostrap Tabs
+			script(type='text/javascript', src='/stylesheets/widgets/tabs/tabs.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			link(rel='stylesheet', type='text/css', href='/stylesheets/star-rating.css')
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			
+			.row.mailbox-wrapper
+				.col-md-12
+					#page-title
+						h2 #{title}
+					- if (flash && flash.successmsg && flash.successmsg.length > 0)
+						p.alert.alert-success= flash.successmsg
+					- if (flash && flash.errormsg && flash.errormsg.length > 0)
+						p.alert.alert-danger= flash.errormsg
+					.example-box-wrapper
+						.col-lg-12(style="margin-bottom:10px;padding:0;")
+							a.btn.btn-md.float-right.btn-primary(href="/manageEvent/manageEventByUser/#{singleuser._id}") Event List
+						ul.list-group.row.list-group-icons
+							li.col-md-3.active
+								a.list-group-item(href='#personalinfo', data-toggle='tab')
+									i.glyph-icon.font-red.icon-bullhorn
+									|                     Personal Information
+							li.col-md-3
+								a.list-group-item(href='#venuinfo', data-toggle='tab')
+									i.glyph-icon.font-primary.icon-building
+									|                     Venue Information
+							li.col-md-3
+								a.list-group-item(href='#reviewrating', data-toggle='tab')
+									i.glyph-icon.font-blue-alt.icon-globe
+									|                     Review & Rating
+							li.col-md-3
+								a.list-group-item(href='#accountsetting', data-toggle='tab')
+									i.glyph-icon.icon-dashboard
+									|                     Account Settings
+						.tab-content
+							#personalinfo.tab-pane.pad0A.fade.active.in
+								.content-box
+									form.form-horizontal.pad15L.pad15R.bordered-row(action='', method='post')
+										input.form-control(type='hidden', name='id', value='#{singleuser._id}')
+										.form-group.remove-border
+											label.col-sm-3.control-label.tooltips First Name
+												span.tooltiptexts First Name
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='First name...', name='firstname', value='#{singleuser.firstname}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Last Name
+												span.tooltiptexts Last Name
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Last name...', name='lastname', value='#{singleuser.lastname}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Email
+												span.tooltiptexts Email
+											.col-sm-6
+												input.form-control(type='email', id='', placeholder='Email address...', name='email', value='#{singleuser.email}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Venue Name
+												span.tooltiptexts Venue Name
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Venue name...', name='companyname', value='#{singleuser.companyname}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Telephone
+												span.tooltiptexts Telephone
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Telephone...', name='telephone', value='#{singleuser.telephone}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Place
+												span.tooltiptexts Place
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Venue Place...', name='place', value='#{singleuser.place}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Street
+												span.tooltiptexts Street
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Street...', name='street', value='#{singleuser.street}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips City
+												span.tooltiptexts City
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='City...', name='city', value='#{singleuser.city}', required)
+										.button-pane.mrg20T
+											button.btn.btn-info(type='submit') Save
+											button.btn.btn-link.font-gray-dark Cancel
+							#venuinfo.tab-pane.fade
+								.content-box
+									form.form-horizontal.pad15L.pad15R.bordered-row(action='/manageVendor/usercominfo/#{singleuser._id}', method='post', enctype='multipart/form-data')
+										input.form-control(type='hidden', id='', name="oldvideo", value='#{singleuser.video}')
+										input.form-control(type='hidden', id='', name="oldcoverimage", value='#{singleuser.coverimage}')
+										input.form-control(type='hidden', id='', name="oldvenueimage", value='#{singleuser.venueimage}')
+										.form-group.remove-border
+											label.col-sm-3.control-label.tooltips Venue Tagline
+												span.tooltiptexts Venue Tagline
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Venue tagline...', name='tagline', value='#{singleuser.tagline}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Description
+												span.tooltiptexts Description
+											.col-sm-6
+												textarea.form-control(name='description', rows='2', required) #{singleuser.description}
+										.form-group
+											label.col-sm-3.control-label.tooltips Dress Code
+												span.tooltiptexts Dress Code
+											.col-sm-6
+												input.form-control(type='text', id='', placeholder='Dress Code...', name='dresscode', value='#{singleuser.dresscode}', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Genres
+												span.tooltiptexts Genres
+											.col-sm-6
+												select.chosen-select(name='genres', multiple, data-placeholder='Select multiple Genres...', id='genres', required)
+													- j = 0
+														- each genres, i in genress
+															- if ( genres._id == singleuser.genres[j])
+																option(selected value='#{genres._id}') #{genres.genres}
+															-else
+																option(value='#{genres._id}') #{genres.genres}
+															- j++
+										.form-group
+											label.col-sm-3.control-label.tooltips Facilities
+												span.tooltiptexts Facilities
+											.col-sm-6
+												textarea.form-control(name='facilities', rows='2', required) #{singleuser.facilities}
+										.form-group
+											label.col-sm-3.control-label.tooltips Video
+												span.tooltiptexts Video
+											.col-sm-6
+												input.form-control(type='file', name="video", id='video', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Cover Image
+												span.tooltiptexts Cover Image
+											.col-sm-6
+												input.form-control(type='file', name="coverimage", id='coverimage', required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Slider Images
+												span.tooltiptexts Slider Image
+											.col-sm-6
+												input.form-control(type='file', name="venueimage", id='venueimage', multiple, required)
+											.col-sm-3 (you can insert multiple images.)
+										.button-pane.mrg20T
+											button.btn.btn-info(type='submit') Save
+											button.btn.btn-link.font-gray-dark Cancel
+							#reviewrating.tab-pane.fade
+								.row
+									.content-box
+										span(style="font-size:24px;padding:7px 15px;") Ratings
+										br
+										span(style="font-size:24px;float:left;padding:7px 15px;") #{avgrating}
+										fieldset.rating
+											- if (avgrating > '4.5')
+												input#star5(type='radio', name='avgratings', value='5', checked)
+											- else
+												input#star5(type='radio', name='avgratings', value='5')
+											label.full(for='star5', title='Awesome - 5 stars')
+											- if (avgrating > '4' && avgrating <= '4.5')
+												input#star4half(type='radio', name='avgratings', value='4 and a half', checked)
+											- else
+												input#star4half(type='radio', name='avgratings', value='4 and a half')
+											label.half(for='star4half', title='Pretty good - 4.5 stars')
+											- if (avgrating > '3.5' && avgrating <= '4')
+												input#star4(type='radio', name='avgratings', value='4', checked)
+											- else
+												input#star4(type='radio', name='avgratings', value='4')
+											label.full(for='star4', title='Pretty good - 4 stars')
+											- if (avgrating > '3' && avgrating <= '3.5')
+												input#star3half(type='radio', name='avgratings', value='3 and a half', checked)
+											- else
+												input#star3half(type='radio', name='avgratings', value='3 and a half')
+											label.half(for='star3half', title='Meh - 3.5 stars')
+											- if (avgrating > '2.5' && avgrating <= '3')
+												input#star3(type='radio', name='avgratings', value='3', checked)
+											- else
+												input#star3(type='radio', name='avgratings', value='3')
+											label.full(for='star3', title='Meh - 3 stars')
+											- if (avgrating > '2' && avgrating <= '2.5')
+												input#star2half(type='radio', name='avgratings', value='2 and a half', checked)
+											- else
+												input#star2half(type='radio', name='avgratings', value='2 and a half')
+											label.half(for='star2half', title='Kinda bad - 2.5 stars')
+											- if (avgrating > '1.5' && avgrating <= '2')
+												input#star2(type='radio', name='avgratings', value='2', checked)
+											- else
+												input#star2(type='radio', name='avgratings', value='2')
+											label.full(for='star2', title='Kinda bad - 2 stars')
+											- if (avgrating > '1' && avgrating <= '1.5')
+												input#star1half(type='radio', name='avgratings', value='1 and a half', checked)
+											- else
+												input#star1half(type='radio', name='avgratings', value='1 and a half')
+											label.half(for='star1half', title='Meh - 1.5 stars')
+											- if (avgrating == '1')
+												input#star1(type='radio', name='avgratings', value='1', checked)
+											- else
+												input#star1(type='radio', name='avgratings', value='1')
+											label.full(for='star1', title='Sucks big time - 1 star')
+										div(style="clear:both;")
+									ul.w3-ul.w3-card-4
+										span(style="font-size:24px;padding:7px 15px;") Reviews
+										- if (reviews)
+											- j = 0
+											- each review, i in reviews
+												li.w3-bar
+													- if (review.enduserid.profileimage == '')
+														img.w3-bar-item.w3-circle.w3-hide-small(src='/images/endusers/img_avatar.png', style='width:85px')
+													- else
+														img.w3-bar-item.w3-circle.w3-hide-small(src='/#{review.enduserid.profileimage}', style='width:85px')
+													.w3-bar-item
+														span.w3-large #{review.enduserid.firstname} #{review.enduserid.lastname}
+														br
+														span
+															fieldset.ratings
+																- if (review.rating > '4.5')
+																	input#star5(type='radio', name='rating#{j}', value='5', checked)
+																- else
+																	input#star5(type='radio', name='rating#{j}', value='5')
+																label.full(for='star5', title='Awesome - 5 stars')
+																- if (review.rating > '4' && review.rating <= '4.5')
+																	input#star4half(type='radio', name='rating#{j}', value='4 and a half', checked)
+																- else
+																	input#star4half(type='radio', name='rating#{j}', value='4 and a half')
+																label.half(for='star4half', title='Pretty good - 4.5 stars')
+																- if (review.rating > '3.5' && review.rating <= '4')
+																	input#star4(type='radio', name='rating#{j}', value='4', checked)
+																- else
+																	input#star4(type='radio', name='rating#{j}', value='4')
+																label.full(for='star4', title='Pretty good - 4 stars')
+																- if (review.rating > '3' && review.rating <= '3.5')
+																	input#star3half(type='radio', name='rating#{j}', value='3 and a half', checked)
+																- else
+																	input#star3half(type='radio', name='rating#{j}', value='3 and a half')
+																label.half(for='star3half', title='Meh - 3.5 stars')
+																- if (review.rating > '2.5' && review.rating <= '3')
+																	input#star3(type='radio', name='rating#{j}', value='3', checked)
+																- else
+																	input#star3(type='radio', name='rating#{j}', value='3')
+																label.full(for='star3', title='Meh - 3 stars')
+																- if (review.rating > '2' && review.rating <= '2.5')
+																	input#star2half(type='radio', name='rating#{j}', value='2 and a half', checked)
+																- else
+																	input#star2half(type='radio', name='rating#{j}', value='2 and a half')
+																label.half(for='star2half', title='Kinda bad - 2.5 stars')
+																- if (review.rating > '1.5' && review.rating <= '2')
+																	input#star2(type='radio', name='rating#{j}', value='2', checked)
+																- else
+																	input#star2(type='radio', name='rating#{j}', value='2')
+																label.full(for='star2', title='Kinda bad - 2 stars')
+																- if (review.rating > '1' && review.rating <= '1.5')
+																	input#star1half(type='radio', name='rating#{j}', value='1 and a half', checked)
+																- else
+																	input#star1half(type='radio', name='rating#{j}', value='1 and a half')
+																label.half(for='star1half', title='Meh - 1.5 stars')
+																- if (review.rating == '1')
+																	input#star1(type='radio', name='rating#{j}', value='1', checked)
+																- else
+																	input#star1(type='radio', name='rating#{j}', value='1')
+																label.full(for='star1', title='Sucks big time - 1 star')
+															div(style="clear:both;")
+														span #{review.comments}
+														- j++
+							#accountsetting.tab-pane.pad0A.fade
+								.content-box
+									h3.title-hero(style="margin: 10px;") Change Password
+									form.form-horizontal.pad15L.pad15R.bordered-row(action='/manageVendor/changePassword', method='post')
+										.form-group
+											label.col-sm-3.control-label.tooltips Old Password
+												span.tooltiptexts Old Password
+											.col-sm-6
+												input.form-control(type='password', id='', placeholder='', name="oldpass", required)
+										.form-group
+											label.col-sm-3.control-label.tooltips New Password
+												span.tooltiptexts New Password
+											.col-sm-6
+												input.form-control(type='password', id='', placeholder='', name="newpass", required)
+										.button-pane.mrg20T
+											button.btn.btn-primary(type='submit') Update Password
+								.content-box
+									h3.title-hero(style="margin: 10px;") Referral Setting
+									form.form-horizontal.pad15L.pad15R.bordered-row(action='/manageVendor/referralSetting/#{singleuser._id}', method='post')
+										.form-group
+											label.col-sm-3.control-label.tooltips Referral
+												span.tooltiptexts Referral
+											.col-sm-6
+												select.form-control(name='referral', required)
+													option(value="") Select Referral
+													- if (referrals && referrals.length > 0)
+														- each referral, i in referrals
+															- if (referral._id == singleuser.referral)
+																option( selected value='#{referral._id}') #{referral.firstname} #{referral.lastname}
+															- else
+																option(value='#{referral._id}') #{referral.firstname} #{referral.lastname}
+										.button-pane.mrg20T
+											button.btn.btn-primary(type='submit') Update Referral
+								.content-box
+									h3.title-hero(style="margin: 10px;") Stripe Keys
+									form.form-horizontal.pad15L.pad15R.bordered-row(action='/manageVendor/accountSetting/#{singleuser._id}', method='post')
+										.form-group
+											label.col-sm-3.control-label.tooltips Publishable Key
+												span.tooltiptexts Publishable Key
+											.col-sm-6
+												input.form-control(type='password', id='', placeholder='', name="publishablekey", value="#{singleuser.publishablekey}", required)
+										.form-group
+											label.col-sm-3.control-label.tooltips Secret Key
+												span.tooltiptexts Secret Key
+											.col-sm-6
+												input.form-control(type='password', id='', placeholder='', name="secretkey", value="#{singleuser.secretkey}", required)
+										.button-pane.mrg20T
+											button.btn.btn-primary(type='submit') Update Account
+								- if ( flash.role == "superadmin")
+									.content-box
+										h3.title-hero(style="margin: 10px;") Purchase Option
+										form.form-horizontal.pad15L.pad15R.bordered-row(action='/manageVendor/purchasticket/#{singleuser._id}', method='post')
+											.form-group
+												label.col-sm-2.control-label.tooltips RSVP
+													span.tooltiptexts RSVP
+												.col-sm-2
+													- if ( singleuser.purchaseticket[0].rsvp == "on")
+														input.input-switch-alt.rsvp(type='checkbox', style='display: none;', id="rsvp", name="rsvp", checked="checked")
+													- else
+														input.input-switch-alt.rsvp(type='checkbox', style='display: none;', id="rsvp", name="rsvp")
+												label.col-sm-2.control-label.tooltips Table Request
+													span.tooltiptexts Table Request
+												.col-sm-2
+													- if ( singleuser.purchaseticket[0].tablerequest == "on")
+														input.input-switch-alt(type='checkbox', style='display: none;', id="tablerequest", name="tablerequest", checked="checked")
+													- else
+														input.input-switch-alt(type='checkbox', style='display: none;', id="tablerequest", name="tablerequest")
+												label.col-sm-2.control-label.tooltips Ticket
+													span.tooltiptexts Ticket
+												.col-sm-2
+													- if ( singleuser.purchaseticket[0].ticket == "on")
+														input.input-switch-alt(type='checkbox', style='display: none;', id="ticket", name="ticket", checked="checked")
+													- else
+														input.input-switch-alt(type='checkbox', style='display: none;', id="ticket", name="ticket")
+											.button-pane.mrg20T
+												button.btn.btn-primary(type='submit') Update	
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+		// Input switch alternate
+		script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch-alt.js')
+		// Widgets init for demo
+		script(type='text/javascript', src='/javascripts/js-init/widgets-init.js')
+							
+		

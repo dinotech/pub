@@ -1,0 +1,47 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			#page-title
+				h2 #{flash.title}
+			.panel
+				.panel-body
+					.example-box-wrapper
+						table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+							thead
+								tr
+									th S.No.
+									th Company Name
+									th Vendor Name
+									th Email
+							tbody
+								- if (users && users.length > 0)
+									- j = 1
+									- each user, i in users
+										tr
+											td #{j}
+											td #{user.companyname}
+											td #{user.firstname} #{user.lastname}
+											td #{user.email}
+											- j++
+											
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')

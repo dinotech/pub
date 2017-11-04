@@ -1,0 +1,576 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// jQueryUI Spinner
+			style.
+				#myTab li.active a{
+				background-color:#FFF;
+				color:#a1a1a1;
+				border-color:#ddd;
+				border-bottom-color:transparent;
+				}
+				.panel{
+				    border: none;
+				    border-radius: inherit;
+				    border-left: 1px solid #ddd;
+				    border-bottom: 1px solid #ddd;
+				    border-right: 1px solid #ddd;
+				}
+				.a-canvas {
+					height: 100% !important;
+					left: 0;
+					position: absolute;
+					top: 0;
+					width: 100% !important;
+				}
+			script(type='text/javascript', src='/stylesheets/widgets/spinner/spinner.js')
+			script(type='text/javascript').
+				/* jQuery UI Spinner */
+				$(function() { "use strict";
+				$(".spinner-input").spinner();
+				});
+			// jQueryUI Autocomplete
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/menu.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete-demo.js')
+			// Touchspin
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/touchspin/touchspin.css">
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin.js')
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			// Multi select
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/multi-select/multiselect.css">
+			script(type='text/javascript', src='/stylesheets/widgets/multi-select/multiselect.js')
+			script(type='text/javascript').
+				/* Multiselect inputs */
+				$(function() { "use strict";
+				$(".multi-select").multiSelect();
+				$(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
+				});
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			script(type='text/javascript', src='/javascripts/js-init/aframe-master.js')
+			// DatePicker
+			link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap/css/bootstrap-datetimepicker.min.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/frontend-elements/pricing-table.css')
+
+			#page-title
+				h2 #{flash.title}
+			ul#myTab.nav.clearfix.nav-tabs
+				li.basic.active
+					a(href='#basic', data-toggle='tab') Basic
+				li.medias
+					a(href='#media', data-toggle='tab') Media
+				li.advanced
+					a(href='#advanced', data-toggle='tab') Advanced
+				li.promotion
+					a(href='#promotion', data-toggle='tab') Promotion
+			.panel
+				.panel-body
+					.example-box-wrapper.phase1
+						#myTabContent.tab-content
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+
+						- if (event)
+							- fromdate = moment(event.fromdate).format("DD/MM/YYYY H:mm:ss")
+							- todate = moment(event.todate).format("DD/MM/YYYY H:mm:ss")
+							#basic.basiccontent.tab-pane.active.in
+								form.form-horizontal(action='', method='post')
+									.form-group
+										label.col-sm-3.control-label.tooltips Title
+											span.tooltiptexts Title 
+										.col-sm-6
+											input.form-control(type='text', id='ename', placeholder='Event Name...', name="eventname" value="#{event.eventname}", required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Date & Time
+											span.tooltiptexts Date & Time
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='fromdate', name='fromdate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='From Date' value="#{fromdate}", required)
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='todate', name='todate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='To Date' value="#{todate}", required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Entry Fee
+											span.tooltiptexts Entry Fee
+										.col-sm-6
+											.input-group
+												span.input-group-addon $
+												input.form-control(type='text', id='entryfee', placeholder='Entry Fee...', name="entryfee" value="#{event.entryfee}", required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Details
+											span.tooltiptexts Details
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='eventdetails', rows='3', id='edetails', required) #{event.eventdetails}
+									.form-group
+										label.col-sm-3.control-label.tooltips Genres
+											span.tooltiptexts Genres
+										.col-sm-6
+											select.chosen-select(name='genres', multiple, data-placeholder='Select multiple Genres...', id='genres', required)
+												- j = 0
+												- each genres, i in genress
+													- if ( genres._id == event.genres[j])
+														option(selected value='#{genres._id}') #{genres.genres}
+													-else
+														option(value='#{genres._id}') #{genres.genres}
+													- j++
+									.form-group
+										label.col-sm-3.control-label.tooltips Dress Code
+											span.tooltiptexts Dress Code
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='dresscode', rows='3', id='dresscode', required) #{event.dresscode}
+									.form-group
+										label.col-sm-3.control-label.tooltips DJ
+											span.tooltiptexts DJ
+										.col-sm-6
+											select.chosen-select(name='dj', multiple, data-placeholder='Select multiple DJ...', id='dj', required)
+												- j = 0
+												- each dj, i in alldj
+													- if ( dj._id == event.eventdj[j])
+														option(selected value='#{dj._id}') #{dj.djname}
+													-else
+														option(value='#{dj._id}') #{dj.djname}
+													- j++
+									.bg-default.text-center
+										button.btn.btn-lg.btn-primary(type='submit', name="saveasdraft1", value="true", style='margin-right:10px;') Save as Draft
+										a.btn.btn-lg.btn-primary(href='#media', data-toggle='tab', id="next1") Next
+							#media.mediacontent.tab-pane
+								form.form-horizontal.bordered-row(action='', method='post', enctype='multipart/form-data')
+									input(type="hidden", name="oldvideo", value="#{event.video}")
+									input(type="hidden", name="oldrotateimage", value="#{event.rotateimage}")
+									input(type="hidden", name="oldcoverimage", value="#{event.coverimage}")
+									input(type="hidden", name="oldeventimage", value="#{event.eventimage}")
+									.form-group(style="border-top:none;")
+										label.col-sm-3.control-label.tooltips Select One
+											span.tooltiptexts Select One
+										.col-sm-6
+											label.radio-inline
+												input(type='radio', name="video", id='uploadvideo')
+												| Upload Video
+											label.radio-inline
+												input(type='radio', name="video", id='videolink' )
+												| Video YouTube URL
+									.form-group.uploadvideo(style="display:none")
+										label.col-sm-3.control-label.tooltips Upload Video
+											span.tooltiptexts Upload Video
+										.col-sm-6
+											input.form-control(type='file', name="video", id='video')
+									.form-group.videolink(style="display:none")
+										label.col-sm-3.control-label.tooltips Video YouTube URL
+											span.tooltiptexts Video YouTube URL
+										.col-sm-6
+											input.form-control(type='text', name="videolink", id='video', value="#{event.videolink}")
+									.form-group
+										label.col-sm-3.control-label.tooltips 360 Image
+											span.tooltiptexts 360 Image
+											i.glyph-icon.tooltip-button.icon-info-circle.tooltip(aria-hidden="true", style="font-size:15px;")
+												span.tooltiptext Tooltip Text
+										.col-sm-6
+											input.form-control(type='file', name="rotateimage", id='rotateimage', required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Cover Image
+											span.tooltiptexts Cover Image
+											i.glyph-icon.tooltip-button.icon-info-circle.tooltip(aria-hidden="true", style="font-size:15px;")
+												span.tooltiptext Tooltip Text
+										.col-sm-6
+											input.form-control(type='file', name="coverimage", id='coverimage', required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Slider Images
+											span.tooltiptexts Slider Images
+											i.glyph-icon.tooltip-button.icon-info-circle.tooltip(aria-hidden="true", style="font-size:15px;")
+												span.tooltiptext Tooltip Text
+										.col-sm-6
+											input.form-control(type='file', name="eventimage", id='eventimage', multiple, required)
+									.bg-default.text-center
+										a.btn.btn-lg.btn-primary(href='#basic', data-toggle='tab', id="back1", style="margin-right:10px;") Back
+										button.btn.btn-lg.btn-primary(type='submit', name="saveasdraft2", value="true", style='margin-right:10px;') Save as Draft
+										a.btn.btn-lg.btn-primary(href='#advanced', data-toggle='tab', id="next2") Next
+										div(style="clear:both;")
+								- if ( event.coverimage != '' || event.eventimage != '')
+									.imagepreview.col-sm-12
+										- if ( event.video )
+											video.col-sm-3(width='320', height='240', controls='')
+												source(src='../../#{event.video}', type='video/mp4')
+												source(src='movie.ogg', type='video/ogg')
+										- if ( event.rotateimage != '')
+											.col-sm-3
+												a-scene
+													a-sky(src='../../#{event.rotateimage}', rotation='0 -130 0')
+													a-text(font='kelsonsans', value='Puy de Sancy, France', width='6', position='-2.5 0.25 -1.5', rotation='0 15 0')
+										- if ( event.coverimage != '' )
+											.coverpreview.col-sm-3
+												img(src="../../#{event.coverimage}" style="width:100%;")
+										- if ( event.eventimage != '' )
+											- each eventimg, i in event.eventimage
+												.eventpreview.col-sm-2(style=" margin-bottom:1%;")
+													img(src="../../#{eventimg}" style="width:100%;height:100px;")
+							#advanced.advancedcontent.tab-pane
+								form.form-horizontal(action='', method='post')
+									- if (purchase.userticket == 'on')
+										.form-group
+											label.col-sm-3.control-label.tooltips Limit Ticket Availables
+												span.tooltiptexts Limit Ticket Availables
+											.col-sm-6
+												input.form-control(type='text', id='memberlimit', placeholder='Member Limit...', name="memberlimit" value="#{event.memberlimit}")
+									- if (purchase.userrsvp == 'on')
+										.form-group
+											label.col-sm-3.control-label.tooltips Limit RSVP Offers
+												span.tooltiptexts Limit RSVP Offers
+											.col-sm-6
+												input.form-control(type='text', id='rsvpoffers', placeholder='Member Limit...', name="rsvpoffers" value="#{event.rsvpoffers}")
+									- if (purchase.usertablerequest == 'on')
+										.form-group
+											label.col-sm-3.control-label.tooltips
+												input(type='checkbox', id='chkstable')
+												| STANDARD TABLE
+												span.tooltiptexts Standard Table
+											.col-sm-2
+												input.form-control.chkstable(type='text', id='stdgusetlimit', placeholder='Up to Guest', name="stdgusetlimit", value='#{event.standardtable[0].guestlimit}' disabled)
+											.col-sm-2
+												input.form-control.chkstable(type='text', id='stdtablecount', placeholder='Limit Tables Availables', name="stdtablecount", value='#{event.standardtable[0].tablecount}' disabled)
+											.col-sm-2
+												.input-group
+													span.input-group-addon $
+													input.form-control.chkstable(type='text', id='stdtableprice', placeholder='Table Price', name="stdtableprice", value='#{event.standardtable[0].tableprice}' disabled)
+										.form-group
+											label.col-sm-3.control-label.tooltips
+												input(type='checkbox', id='chkptable')
+												| PREMIUM TABLE
+												span.tooltiptexts Premium Table
+											.col-sm-2
+												input.form-control.chkptable(type='text', id='pregusetlimit', placeholder='Up to Guest', name="pregusetlimit", value='#{event.premiumtable[0].guestlimit}' disabled)
+											.col-sm-2
+												input.form-control.chkptable(type='text', id='pretablecount', placeholder='Limit Tables Availables', name="pretablecount", value='#{event.premiumtable[0].tablecount}' disabled)
+											.col-sm-2
+												.input-group
+													span.input-group-addon $
+													input.form-control.chkptable(type='text', id='pretableprice', placeholder='Table Price', name="pretableprice", value='#{event.premiumtable[0].tableprice}' disabled)
+										.form-group
+											label.col-sm-3.control-label.tooltips
+												input(type='checkbox', id='chkvtable')
+												| VIP TABLE
+												span.tooltiptexts VIP Table
+											.col-sm-2
+												input.form-control.chkvtable(type='text', id='vipgusetlimit', placeholder='Up to Guest', name="vipgusetlimit", value='#{event.viptable[0].guestlimit}' disabled)
+											.col-sm-2
+												input.form-control.chkvtable(type='text', id='viptablecount', placeholder='Limit Tables Availables', name="viptablecount", value='#{event.viptable[0].tablecount}' disabled)
+											.col-sm-2
+												.input-group
+													span.input-group-addon $
+													input.form-control.chkvtable(type='text', id='viptableprice', placeholder='Table Price', name="viptableprice", value='#{event.viptable[0].tableprice}' disabled)
+									.bg-default.text-center
+										a.btn.btn-lg.btn-primary(href='#media', data-toggle='tab', id="back2", style="margin-right:10px;") Back
+										button.btn.btn-lg.btn-primary(type='submit', name="saveasdraft3", value="true", id="saveasdraft3" style='margin-right:10px;') Save as Draft
+										a.btn.btn-lg.btn-primary(href='#promotion', data-toggle='tab', id="next3") Next
+							#promotion.promotioncontent.tab-pane
+								.pricing-box-alt.row.clearfix(style='text-align:center;')
+									- if (plans)
+										- each plan, i in plans
+											- finalprice = plan.planprice*100 
+											.col-md-3.individual-plan
+												.plan-header
+													h4 #{plan.plantitle}
+													.plan-price
+														small $
+														| #{plan.planprice}
+												ul
+													li.header
+													li #{plan.planduration} months
+												form(action='/manageEvent/payment/#{event._id}', method='post', style='margin:15px;')
+													script(src='https://checkout.stripe.com/checkout.js',
+															class='stripe-button',
+															data-key='pk_test_oEHhSFGSou3hSDaei5DtroIx',
+															data-amount='#{finalprice}',
+															data-name='Featured Plan',
+															data-description='',
+															data-locale='',
+															data-currency='usd')
+													input(type='hidden', name='chargeamount', value='#{plan.planprice}')
+													input(type='hidden', name='plantitle', value='#{plan.plantitle}')
+													input(type='hidden', name='planduration', value='#{plan.planduration}')
+								.bg-default.text-center
+									a.btn.btn-lg.btn-primary(href='#advanced', data-toggle='tab', id="back3", style="margin-right:10px;") Back
+									a.btn.btn-lg.btn-primary(href="/manageEvent/updpublishstatus/#{event._id}", id='save') Publish Event without Promoting
+						- else
+							#basic.basiccontent.tab-pane.active.in
+								form.form-horizontal(action='', method='post')
+									input(type="hidden", name="userid", value="#{flash.id}")
+									.form-group
+										label.col-sm-3.control-label.tooltips Title
+											span.tooltiptexts Title
+										.col-sm-6
+											input.form-control(type='text', id='ename', placeholder='Event Name...', name="eventname", required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Date & Time
+											span.tooltiptexts Date & Time
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='fromdate', name='fromdate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='From Date', required)
+										.col-sm-3
+											.datetimepicker.input-prepend.input-group
+												span.add-on.input-group-addon
+													i.icon-calendar
+												input.form-control.bootstrap-datepicker(type='text', id='todate', name='todate', data-format='dd/MM/yyyy hh:mm:ss', placeholder='To Date', required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Entry Fee
+											span.tooltiptexts Entry Fee
+										.col-sm-6
+											.input-group
+												span.input-group-addon $
+												input.form-control(type='text', id='entryfee', placeholder='Entry Fee...', name="entryfee", required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Details
+											span.tooltiptexts Details
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='eventdetails', rows='3', id='edetails' ,required)
+									.form-group
+										label.col-sm-3.control-label.tooltips Genres
+											span.tooltiptexts Genres
+										.col-sm-6
+											select.chosen-select(name='genres', multiple, data-placeholder='Select multiple Genres...', id='genres', required)
+												- each genres, i in genress
+													option(value='#{genres._id}') #{genres.genres}
+									.form-group
+										label.col-sm-3.control-label.tooltips Dress Code
+											span.tooltiptexts Dress Code
+										.col-sm-6
+											textarea.form-control.textarea-autosize(name='dresscode', rows='3', id='dresscode', required)
+									.form-group
+										label.col-sm-3.control-label.tooltips DJ
+											span.tooltiptexts DJ
+										.col-sm-6
+											select.chosen-select(name='dj', multiple, data-placeholder='Select multiple DJ...', id='dj', required)
+												- each dj, i in alldj
+													option(value='#{dj._id}') #{dj.djname}
+									.bg-default.text-center
+										button.btn.btn-lg.btn-primary(type='submit', style='margin-right:10px;') Save as Draft
+										button.btn.btn-lg.btn-primary(type='button', id='next', name='save') Next
+
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap-datetimepicker.min.js')
+	script(type='text/javascript').
+		var stdgusetlimit = $('#stdgusetlimit').val();
+		var pregusetlimit = $('#pregusetlimit').val();
+		var vipgusetlimit = $('#vipgusetlimit').val();
+		if(stdgusetlimit == 'undefined'){
+			$('#stdgusetlimit').val("");
+			$('#stdtablecount').val("");
+			$('#stdtableprice').val("");
+		}
+		if(pregusetlimit == 'undefined'){
+			$('#pregusetlimit').val("");
+			$('#pretablecount').val("");
+			$('#pretableprice').val("");
+		}
+		if(vipgusetlimit == 'undefined'){
+			$('#vipgusetlimit').val("");
+			$('#viptablecount').val("");
+			$('#viptableprice').val("");
+		}
+		$(function() { "use strict";
+		$('.datetimepicker').datetimepicker({
+		language: 'en',
+		pick12HourFormat: true
+		});
+		});
+		$('#nxtmedia').click(function(){
+			$('.basic').removeClass('active');
+			$('.advanced').removeClass('active');
+			$('.medias').addClass('active');
+		});
+		$('#nxtadvanced').click(function(){
+			$('.medias').removeClass('active');
+			$('.advanced').addClass('active');
+		});
+		$('#uploadvideo').click(function(){
+			$('.videolink').css('display', 'none');
+			$('.uploadvideo').css('display', 'block');
+		});
+		$('#videolink').click(function(){
+			$('.uploadvideo').css('display', 'none');
+			$('.videolink').css('display', 'block');
+		});
+		$('#chkstable').click(function(){
+			if($(this).prop('checked')==true){
+				$('.chkstable').removeAttr('disabled');
+				$('#saveasdraft3').removeAttr('disabled');
+				$('#stdgusetlimit').attr('required', 'true');
+				$('#stdtablecount').attr('required', 'true');
+				$('#stdtableprice').attr('required', 'true');
+			} else{
+				$('.chkstable').attr('disabled', 'true');
+				if($('#chkptable').prop('checked')!=true && $('#chkvtable').prop('checked')!=true){
+					$('#saveasdraft3').attr('disabled', 'true');
+					$('#stdgusetlimit').removeAttr('required');
+					$('#stdtablecount').removeAttr('required');
+					$('#stdtableprice').removeAttr('required');
+				}
+			}
+		});
+		$('#chkptable').click(function(){
+			if($(this).prop('checked')==true){
+				$('.chkptable').removeAttr('disabled');
+				$('#saveasdraft3').removeAttr('disabled');
+				$('#pregusetlimit').attr('required', 'true');
+				$('#pretablecount').attr('required', 'true');
+				$('#pretableprice').attr('required', 'true');
+			} else{
+				$('.chkptable').attr('disabled', 'true');
+				if($('#chkstable').prop('checked')!=true && $('#chkvtable').prop('checked')!=true){
+					$('#saveasdraft3').attr('disabled', 'true');
+					$('#pregusetlimit').removeAttr('required');
+					$('#pretablecount').removeAttr('required');
+					$('#pretableprice').removeAttr('required');
+				}
+			}
+		});
+		$('#chkvtable').click(function(){
+			if($(this).prop('checked')==true){
+				$('.chkvtable').removeAttr('disabled');
+				$('#saveasdraft3').removeAttr('disabled');
+				$('#vipgusetlimit').attr('required', 'true');
+				$('#viptablecount').attr('required', 'true');
+				$('#viptableprice').attr('required', 'true');
+			} else{
+				$('.chkvtable').attr('disabled', 'true');
+				if($('#chkstable').prop('checked')!=true && $('#chkptable').prop('checked')!=true){
+					$('#saveasdraft3').attr('disabled', 'true');
+					$('#vipgusetlimit').removeAttr('required');
+					$('#viptablecount').removeAttr('required');
+					$('#viptableprice').removeAttr('required');
+				}
+			}
+		});
+		/*$('.basic').click(function(){
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+			$('.mediacontent').css('display', 'none');
+			$('.advancedcontent').css('display', 'none');
+			$('.basiccontent').css('display', 'block');
+			$('.advanced').removeClass('active');
+			$('.medias').removeClass('active');
+			$('.basic').addClass('active');
+		});
+		$('.medias').click(function(){
+			var ename = $('#ename').val();
+			var fromdate = $('#fromdate').val();
+			var todate = $('#todate').val();
+			var edetails = $('#edetails').val();
+			var entryfee = $('#entryfee').val();
+			var genres = [];
+				$.each($("#genres option:selected"), function(){            
+				genres.push($(this).val());
+				});
+			var djs = [];
+				$.each($("#dj option:selected"), function(){            
+				djs.push($(this).val());
+				});
+
+			if( ename != '' && fromdate != '' && todate != '' && edetails != '' && entryfee != '' && genres != '' && djs != '')
+			{ 
+				$('.advancedcontent').css('display', 'none');
+				$('.basiccontent').css('display', 'none');
+				$('.mediacontent').css('display', 'block');
+				$('.basic').removeClass('active');
+				$('.advanced').removeClass('active');
+				$('.medias').addClass('active');
+			}
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+		});
+		$('.advanced').click(function(){
+			if( ename != '' && fromdate != '' && todate != '' && edetails != '' && entryfee != '' && genres != '' && djs != '')
+			{ 
+				$('.mediacontent').css('display', 'none');
+				$('.basiccontent').css('display', 'none');
+				$('.advancedcontent').css('display', 'block');
+				$('.basic').removeClass('active');
+				$('.medias').removeClass('active');
+				$('.advanced').addClass('active');
+			}
+			$('.phase2').css('display', 'none');
+			$('.phase1').css('display', 'block');
+		});
+		$('#promotion').click(function(){
+			$('.phase1').css('display', 'none');
+			$('.phase2').css('display', 'block');
+		});*/
+		$('#next').click(function(){
+			alert("Please First Click on 'Save as Draft'.")
+		});
+		$('#next1').click(function(){ 
+
+			$('.basic').removeClass('active');
+			$('.advanced').removeClass('active');
+			$('.promotion').removeClass('active');
+			$('.medias').addClass('active');
+		});
+		$('#next2').click(function(){
+			$('.basic').removeClass('active');
+			$('.medias').removeClass('active');
+			$('.promotion').removeClass('active');
+			$('.advanced').addClass('active');
+		});
+		$('#next3').click(function(){
+			$('.basic').removeClass('active');
+			$('.medias').removeClass('active');
+			$('.advanced').removeClass('active');
+			$('.promotion').addClass('active');
+		});
+		$('#back1').click(function(){ 
+
+			$('.medias').removeClass('active');
+			$('.advanced').removeClass('active');
+			$('.promotion').removeClass('active');
+			$('.basic').addClass('active');
+		});
+		$('#back2').click(function(){
+			$('.basic').removeClass('active');
+			$('.advanced').removeClass('active');
+			$('.promotion').removeClass('active');
+			$('.medias').addClass('active');
+		});
+		$('#back3').click(function(){
+			$('.basic').removeClass('active');
+			$('.medias').removeClass('active');
+			$('.promotion').removeClass('active');
+			$('.advanced').addClass('active');
+		});
+		$('#save').click(function(){
+			$('#form1').submit();
+		});
+		$('#saveasdraft').click(function(){
+			$('#form1').submit();
+		});
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+	

@@ -1,0 +1,136 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+
+			// jQueryUI Spinner
+			script(type='text/javascript', src='/stylesheets/widgets/spinner/spinner.js')
+			script(type='text/javascript').
+				/* jQuery UI Spinner */
+				$(function() { "use strict";
+				$(".spinner-input").spinner();
+				});
+			// jQueryUI Autocomplete
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/menu.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete-demo.js')
+			// Touchspin
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/touchspin/touchspin.css">
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin.js')
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			// Multi select
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/multi-select/multiselect.css">
+			//link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap/css/bootstrap.css')
+			script(type='text/javascript', src='/stylesheets/widgets/multi-select/multiselect.js')
+			script(type='text/javascript').
+				/* Multiselect inputs */
+				$(function() { "use strict";
+				$(".multi-select").multiSelect();
+				$(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
+				});
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			#page-title
+				h2 Add Vendor
+			.panel
+				.panel-body
+					.example-box-wrapper
+						form.form-horizontal(action='', method='post')
+							.form-group
+								label.col-sm-3.control-label.tooltips(title="Enter Venue Owner First Name") First Name
+									span.tooltiptexts First Name
+								.col-sm-6
+									input.form-control(type='text', id='', placeholder='Enter First Name', name="firstname", required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Last Name
+									span.tooltiptexts Last Name
+								.col-sm-6
+									input.form-control(type='text', id='', placeholder='Enter Last Name', name='lastname', required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Email
+									span.tooltiptexts Email
+								.col-sm-6
+									input.form-control(type='email', id='', placeholder='Enter Email', name='email', required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Password
+									span.tooltiptexts Password
+								.col-sm-6
+									input.form-control(type='text', id='randompassword', placeholder='Enter Password', name='password', required)
+								.col-sm-3
+									a.btn.btn-primary(id="generatepassword") Generate Password
+							.form-group
+								label.col-sm-3.control-label.tooltips Venue Name
+									span.tooltiptexts Venue Name
+								.col-sm-6
+									input.form-control(type='text', id='', placeholder='Enter Venue Name', name='companyname', required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Phone Number
+									span.tooltiptexts Phone Number
+								.col-sm-6
+									input.form-control(type='text', id='', placeholder='Enter Telephone', name='telephone', required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Place
+									span.tooltiptexts Place
+								.col-sm-6
+									input.form-control(type='text' id='', placeholder="Enter Venue Area", name="place", required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Street
+									span.tooltiptexts Street
+								.col-sm-6
+									input.form-control(type='text' id='', placeholder="Enter Street", name="street", required)
+							.form-group
+								label.col-sm-3.control-label.tooltips City
+									span.tooltiptexts City
+								.col-sm-6
+									input.form-control(type='text' id='', placeholder="Enter City", name="city", required)
+							.form-group
+								label.col-sm-3.control-label.tooltips Currency
+									span.tooltiptexts Currency
+								.col-sm-6
+									select.form-control(name='currency', data-placeholder='Select multiple Currency...', id='currency', required)
+										option(value="") Select a Currency
+										- if (currencies)
+											- each currency, i in currencies
+												option(value='#{currency._id}') #{currency.currencytitle}
+							.form-group
+								label.col-sm-3.control-label.tooltips Agreement
+									span.tooltiptexts Agreement
+								.col-sm-6
+									select.form-control(name='agreement', required)
+										option(value="") Select Agreement
+										- if (allagreement && allagreement.length > 0)
+											- each agreement, i in allagreement
+												option(value='#{agreement._id}') #{agreement.title}
+
+							.bg-default.text-center
+								button.btn.btn-lg.btn-primary(type='submit') Save
+
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+	script(type='text/javascript').
+		$('#generatepassword').click(function(){
+			var generatepassword = Math.random().toString(36).slice(-8);
+			$('#randompassword').val(generatepassword);
+			return 0;
+		});

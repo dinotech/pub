@@ -1,0 +1,100 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// jQueryUI Spinner
+			script(type='text/javascript', src='/stylesheets/widgets/spinner/spinner.js')
+			script(type='text/javascript').
+				/* jQuery UI Spinner */
+				$(function() { "use strict";
+				$(".spinner-input").spinner();
+				});
+			// jQueryUI Autocomplete
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/menu.js')
+			script(type='text/javascript', src='/stylesheets/widgets/autocomplete/autocomplete-demo.js')
+			// Touchspin
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/touchspin/touchspin.css">
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin.js')
+			script(type='text/javascript', src='/stylesheets/widgets/touchspin/touchspin-demo.js')
+			// Input switch
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/input-switch/inputswitch.css">
+			script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch.js')
+			script(type='text/javascript').
+				/* Input switch */
+				$(function() { "use strict";
+				$('.input-switch').bootstrapSwitch();
+				});
+			// Textarea
+			script(type='text/javascript', src='/stylesheets/widgets/textarea/textarea.js')
+			script(type='text/javascript').
+				/* Textarea autoresize */
+				$(function() { "use strict";
+				$('.textarea-autosize').autosize();
+				});
+			// Multi select
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/multi-select/multiselect.css">
+			script(type='text/javascript', src='/stylesheets/widgets/multi-select/multiselect.js')
+			script(type='text/javascript').
+				/* Multiselect inputs */
+				$(function() { "use strict";
+				$(".multi-select").multiSelect();
+				$(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
+				});
+			// Uniform
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/uniform/uniform.css">
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform.js')
+			script(type='text/javascript', src='/stylesheets/widgets/uniform/uniform-demo.js')
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			// DatePicker
+			link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker/datepicker.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/datepicker-ui/datepicker.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/daterangepicker/daterangepicker.css')
+			// TimePicker
+			link(rel='stylesheet', type='text/css', href='/stylesheets/elements/timeline.css')
+			link(rel='stylesheet', type='text/css', href='/stylesheets/widgets/timepicker/timepicker.css')
+			#page-title
+				h2 #{flash.title}
+				
+			.panel
+				.panel-body
+					.example-box-wrapper
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+						form.form-horizontal(action='', method='post')
+							input(type="hidden", name="userid", value="#{flash.id}")
+							- if (genres)
+								.form-group
+									label.col-sm-3.control-label.tooltips Genres
+										span.tooltiptexts Genres
+									.col-sm-6
+										input.form-control(type='text', id='', placeholder='Genres Type...', name="genres", value="#{genres.genres}", required)
+								.bg-default.text-center
+									button.btn.btn-lg.btn-primary(type='submit') Save
+							- else
+								.form-group
+									label.col-sm-3.control-label.tooltips Genres
+										span.tooltiptexts Genres
+									.col-sm-6
+										input.form-control(type='text', id='', placeholder='Genres Type...', name="genres", required)
+								.bg-default.text-center
+									button.btn.btn-lg.btn-primary(type='submit') Save
+
+	script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+	script(type='text/javascript', src='/stylesheets/widgets/datepicker-ui/datepicker.js')
+	script(type='text/javascript', src='/stylesheets/widgets/daterangepicker/moment.js')
+	script(type='text/javascript', src='/stylesheets/widgets/daterangepicker/daterangepicker.js')
+	script(type='text/javascript', src='/stylesheets/widgets/daterangepicker/daterangepicker-demo.js')
+	script(type='text/javascript', src='/stylesheets/widgets/datepicker-ui/datepicker-demo.js')
+
+	script(type='text/javascript', src='/stylesheets/widgets/timepicker/timepicker.js')
+	script(type='text/javascript').
+		$(function() { "use strict";
+		$('.timepicker-example').timepicker();
+		});

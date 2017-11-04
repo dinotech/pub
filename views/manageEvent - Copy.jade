@@ -1,0 +1,191 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				function verified(id){
+					$('#verify'+id).submit();
+				}
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				} );
+				$(document).ready(function() {
+				$('.dataTables_filter input').attr("placeholder", "Search...");
+				});
+			#page-title
+				h2 #{flash.title}
+				#theme-options.admin-options
+					a.btn.btn-primary.theme-switcher.tooltip-button(href='javascript:void(0);', data-placement='left', title='Color schemes and layout options')
+						i.glyph-icon.icon-linecons-cog.icon-spin
+					#theme-switcher-wrapper
+						.scroll-switcher
+							h5.header Layout options
+							ul.reset-ul
+								li
+									label(for='boxed-layout') Boxed layout
+									input#boxed-layout.input-switch-alt(type='checkbox', data-toggletarget='boxed-layout')
+								li
+									label(for='fixed-header') Fixed header
+									input#fixed-header.input-switch-alt(type='checkbox', data-toggletarget='fixed-header')
+								li
+									label(for='fixed-sidebar') Fixed sidebar
+									input#fixed-sidebar.input-switch-alt(type='checkbox', data-toggletarget='fixed-sidebar')
+								li
+									label(for='closed-sidebar') Closed sidebar
+									input#closed-sidebar.input-switch-alt(type='checkbox', data-toggletarget='closed-sidebar')
+							.boxed-bg-wrapper.hide
+								h5.header
+									| Boxed Page Background
+									a.set-background-style(data-header-bg='', title='Remove all styles', href='javascript:void(0);') Clear
+								.theme-color-wrapper.clearfix
+									h5 Patterns
+									a.tooltip-button.set-background-style.pattern-bg-3(data-header-bg='pattern-bg-3', title='Pattern 3', href='javascript:void(0);') Pattern 3
+									a.tooltip-button.set-background-style.pattern-bg-4(data-header-bg='pattern-bg-4', title='Pattern 4', href='javascript:void(0);') Pattern 4
+									a.tooltip-button.set-background-style.pattern-bg-5(data-header-bg='pattern-bg-5', title='Pattern 5', href='javascript:void(0);') Pattern 5
+									a.tooltip-button.set-background-style.pattern-bg-6(data-header-bg='pattern-bg-6', title='Pattern 6', href='javascript:void(0);') Pattern 6
+									a.tooltip-button.set-background-style.pattern-bg-7(data-header-bg='pattern-bg-7', title='Pattern 7', href='javascript:void(0);') Pattern 7
+									a.tooltip-button.set-background-style.pattern-bg-8(data-header-bg='pattern-bg-8', title='Pattern 8', href='javascript:void(0);') Pattern 8
+									a.tooltip-button.set-background-style.pattern-bg-9(data-header-bg='pattern-bg-9', title='Pattern 9', href='javascript:void(0);') Pattern 9
+									a.tooltip-button.set-background-style.pattern-bg-10(data-header-bg='pattern-bg-10', title='Pattern 10', href='javascript:void(0);') Pattern 10
+									.clear
+									h5.mrg15T Solids &Images
+									a.tooltip-button.set-background-style.bg-black(data-header-bg='bg-black', title='Black', href='javascript:void(0);') Black
+									a.tooltip-button.set-background-style.bg-gray.mrg10R(data-header-bg='bg-gray', title='Gray', href='javascript:void(0);') Gray
+									a.tooltip-button.set-background-style.full-bg-1(data-header-bg='full-bg-1 fixed-bg', title='Image 1', href='javascript:void(0);') Image 1
+									a.tooltip-button.set-background-style.full-bg-2(data-header-bg='full-bg-2 fixed-bg', title='Image 2', href='javascript:void(0);') Image 2
+									a.tooltip-button.set-background-style.full-bg-3(data-header-bg='full-bg-3 fixed-bg', title='Image 3', href='javascript:void(0);') Image 3
+									a.tooltip-button.set-background-style.full-bg-4(data-header-bg='full-bg-4 fixed-bg', title='Image 4', href='javascript:void(0);') Image 4
+									a.tooltip-button.set-background-style.full-bg-5(data-header-bg='full-bg-5 fixed-bg', title='Image 5', href='javascript:void(0);') Image 5
+									a.tooltip-button.set-background-style.full-bg-6(data-header-bg='full-bg-6 fixed-bg', title='Image 6', href='javascript:void(0);') Image 6
+							h5.header
+								| Header Style
+								a.set-adminheader-style(data-header-bg='bg-gradient-9', title='Remove all styles', href='javascript:void(0);') Clear
+							.theme-color-wrapper.clearfix
+								h5 Solids
+								a.tooltip-button.set-adminheader-style.bg-primary(data-header-bg='bg-primary font-inverse', title='Primary', href='javascript:void(0);') Primary
+								a.tooltip-button.set-adminheader-style.bg-green(data-header-bg='bg-green font-inverse', title='Green', href='javascript:void(0);') Green
+								a.tooltip-button.set-adminheader-style.bg-red(data-header-bg='bg-red font-inverse', title='Red', href='javascript:void(0);') Red
+								a.tooltip-button.set-adminheader-style.bg-blue(data-header-bg='bg-blue font-inverse', title='Blue', href='javascript:void(0);') Blue
+								a.tooltip-button.set-adminheader-style.bg-warning(data-header-bg='bg-warning font-inverse', title='Warning', href='javascript:void(0);') Warning
+								a.tooltip-button.set-adminheader-style.bg-purple(data-header-bg='bg-purple font-inverse', title='Purple', href='javascript:void(0);') Purple
+								a.tooltip-button.set-adminheader-style.bg-black(data-header-bg='bg-black font-inverse', title='Black', href='javascript:void(0);') Black
+								.clear
+								h5.mrg15T Gradients
+								a.tooltip-button.set-adminheader-style.bg-gradient-1(data-header-bg='bg-gradient-1 font-inverse', title='Gradient 1', href='javascript:void(0);') Gradient 1
+								a.tooltip-button.set-adminheader-style.bg-gradient-2(data-header-bg='bg-gradient-2 font-inverse', title='Gradient 2', href='javascript:void(0);') Gradient 2
+								a.tooltip-button.set-adminheader-style.bg-gradient-3(data-header-bg='bg-gradient-3 font-inverse', title='Gradient 3', href='javascript:void(0);') Gradient 3
+								a.tooltip-button.set-adminheader-style.bg-gradient-4(data-header-bg='bg-gradient-4 font-inverse', title='Gradient 4', href='javascript:void(0);') Gradient 4
+								a.tooltip-button.set-adminheader-style.bg-gradient-5(data-header-bg='bg-gradient-5 font-inverse', title='Gradient 5', href='javascript:void(0);') Gradient 5
+								a.tooltip-button.set-adminheader-style.bg-gradient-6(data-header-bg='bg-gradient-6 font-inverse', title='Gradient 6', href='javascript:void(0);') Gradient 6
+								a.tooltip-button.set-adminheader-style.bg-gradient-7(data-header-bg='bg-gradient-7 font-inverse', title='Gradient 7', href='javascript:void(0);') Gradient 7
+								a.tooltip-button.set-adminheader-style.bg-gradient-8(data-header-bg='bg-gradient-8 font-inverse', title='Gradient 8', href='javascript:void(0);') Gradient 8
+							h5.header
+								| Sidebar Style
+								a.set-sidebar-style(data-header-bg='', title='Remove all styles', href='javascript:void(0);') Clear
+							.theme-color-wrapper.clearfix
+								h5 Solids
+								a.tooltip-button.set-sidebar-style.bg-primary(data-header-bg='bg-primary font-inverse', title='Primary', href='javascript:void(0);') Primary
+								a.tooltip-button.set-sidebar-style.bg-green(data-header-bg='bg-green font-inverse', title='Green', href='javascript:void(0);') Green
+								a.tooltip-button.set-sidebar-style.bg-red(data-header-bg='bg-red font-inverse', title='Red', href='javascript:void(0);') Red
+								a.tooltip-button.set-sidebar-style.bg-blue(data-header-bg='bg-blue font-inverse', title='Blue', href='javascript:void(0);') Blue
+								a.tooltip-button.set-sidebar-style.bg-warning(data-header-bg='bg-warning font-inverse', title='Warning', href='javascript:void(0);') Warning
+								a.tooltip-button.set-sidebar-style.bg-purple(data-header-bg='bg-purple font-inverse', title='Purple', href='javascript:void(0);') Purple
+								a.tooltip-button.set-sidebar-style.bg-black(data-header-bg='bg-black font-inverse', title='Black', href='javascript:void(0);') Black
+								.clear
+								h5.mrg15T Gradients
+								a.tooltip-button.set-sidebar-style.bg-gradient-1(data-header-bg='bg-gradient-1 font-inverse', title='Gradient 1', href='javascript:void(0);') Gradient 1
+								a.tooltip-button.set-sidebar-style.bg-gradient-2(data-header-bg='bg-gradient-2 font-inverse', title='Gradient 2', href='javascript:void(0);') Gradient 2
+								a.tooltip-button.set-sidebar-style.bg-gradient-3(data-header-bg='bg-gradient-3 font-inverse', title='Gradient 3', href='javascript:void(0);') Gradient 3
+								a.tooltip-button.set-sidebar-style.bg-gradient-4(data-header-bg='bg-gradient-4 font-inverse', title='Gradient 4', href='javascript:void(0);') Gradient 4
+								a.tooltip-button.set-sidebar-style.bg-gradient-5(data-header-bg='bg-gradient-5 font-inverse', title='Gradient 5', href='javascript:void(0);') Gradient 5
+								a.tooltip-button.set-sidebar-style.bg-gradient-6(data-header-bg='bg-gradient-6 font-inverse', title='Gradient 6', href='javascript:void(0);') Gradient 6
+								a.tooltip-button.set-sidebar-style.bg-gradient-7(data-header-bg='bg-gradient-7 font-inverse', title='Gradient 7', href='javascript:void(0);') Gradient 7
+								a.tooltip-button.set-sidebar-style.bg-gradient-8(data-header-bg='bg-gradient-8 font-inverse', title='Gradient 8', href='javascript:void(0);') Gradient 8
+			.panel
+				.panel-body
+					- if (flash && flash.successmsg && flash.successmsg.length > 0)
+						p.alert.alert-success= flash.successmsg
+					.example-box-wrapper
+						.col-lg-12(style="margin-bottom:10px;padding:0;")
+							a.btn.btn-md.float-right.btn-primary(href="/manageEvent/addEvent") Add Event
+						table#datatable-responsive.table.table-striped.table-bordered.responsive.no-wrap(cellspacing='0', width='100%')
+							thead
+								tr
+									th S.No.
+									th Event Image
+									th Event
+									th Date
+									th Promotion
+									th Edit
+									th Delete
+									th Publish
+							tbody
+								- if (allevents)
+									- j = 1
+									- each event, i in allevents
+										tr
+											td #{j}
+											td 
+												img(src='#{event.coverimage}', width='100', height='100')
+											td #{event.eventname}
+											td #{event.fromdate}
+											td Not Promoted
+											td
+												a.btn.btn-primary(href="/manageEvent/addEvent/#{event._id}")
+													i.glyph-icon.icon-pencil-square-o
+											td
+												a.btn.btn-danger(href="/manageEvent/delEvent/#{event._id}")
+													i.glyph-icon.icon-pencil-square-o
+											td
+												form.form-horizontal(action='/manageEvent/updpublishstatus/#{event._id}', method='post', id='verify#{j}')
+													- if (event.publishstatus == 'true')
+														input#chkverify(type='checkbox', name='publishstatus', checked value="true", onchange='verified(#{j})')
+													- else
+														input#chkverify(type='checkbox', name='publishstatus', value="true", onchange='verified(#{j})')
+											- j++
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
+		// Bootstrap Dropdown
+		// <script type="text/javascript" src="/stylesheets/widgets/dropdown/dropdown.js"></script>
+		// Bootstrap Tooltip
+		// <script type="text/javascript" src="/stylesheets/widgets/tooltip/tooltip.js"></script>
+		// Bootstrap Popover
+		// <script type="text/javascript" src="/stylesheets/widgets/popover/popover.js"></script>
+		// Bootstrap Progress Bar
+		script(type='text/javascript', src='/stylesheets/widgets/progressbar/progressbar.js')
+		// Bootstrap Buttons
+		// <script type="text/javascript" src="/stylesheets/widgets/button/button.js"></script>
+		// Bootstrap Collapse
+		// <script type="text/javascript" src="/stylesheets/widgets/collapse/collapse.js"></script>
+		// Superclick
+		script(type='text/javascript', src='/stylesheets/widgets/superclick/superclick.js')
+		// Input switch alternate
+		script(type='text/javascript', src='/stylesheets/widgets/input-switch/inputswitch-alt.js')
+		// Slim scroll
+		script(type='text/javascript', src='/stylesheets/widgets/slimscroll/slimscroll.js')
+		// Slidebars
+		script(type='text/javascript', src='/stylesheets/widgets/slidebars/slidebars.js')
+		script(type='text/javascript', src='/stylesheets/widgets/slidebars/slidebars-demo.js')
+		// PieGage
+		script(type='text/javascript', src='/stylesheets/widgets/charts/piegage/piegage.js')
+		script(type='text/javascript', src='/stylesheets/widgets/charts/piegage/piegage-demo.js')
+		// Screenfull
+		script(type='text/javascript', src='/stylesheets/widgets/screenfull/screenfull.js')
+		// Content box
+		script(type='text/javascript', src='/stylesheets/widgets/content-box/contentbox.js')
+		// Overlay
+		script(type='text/javascript', src='/stylesheets/widgets/overlay/overlay.js')
+		// Widgets init for demo
+		script(type='text/javascript', src='/javascripts/js-init/widgets-init.js')
+		// Theme layout
+		script(type='text/javascript', src='/stylesheets/themes/admin/layout.js')
+		// Theme switcher
+		script(type='text/javascript', src='/stylesheets/widgets/theme-switcher/themeswitcher.js')

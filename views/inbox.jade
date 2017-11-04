@@ -1,0 +1,158 @@
+extends layout
+
+block contents
+	#page-content
+		.container
+			// Data tables
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/datatable/datatable.css">
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-bootstrap.js')
+			script(type='text/javascript', src='/stylesheets/widgets/datatable/datatable-responsive.js')
+
+			// Chosen
+			// <link rel="stylesheet" type="text/css" href="/stylesheets/widgets/chosen/chosen.css">
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen.js')
+			script(type='text/javascript', src='/stylesheets/widgets/chosen/chosen-demo.js')
+			script(type='text/javascript', src='/javascripts/js-init/aframe-master.js')
+			script(type='text/javascript').
+				/* Datatables responsive */
+				$(document).ready(function() {
+				$('#datatable-responsive').DataTable( {
+				responsive: true
+				} );
+				} );
+			#page-title
+				h2 #{flash.title}
+			.panel
+				.panel-body
+					.example-box-wrapper
+						- if (flash && flash.successmsg && flash.successmsg.length > 0)
+							p.alert.alert-success= flash.successmsg
+						- if (flash && flash.errormsg && flash.errormsg.length > 0)
+							p.alert.alert-danger= flash.errormsg
+						- if (flash && flash.successdel && flash.successdel.length > 0)
+							p.alert.alert-success= flash.successdel
+						.col-lg-12(style="margin-bottom:10px;padding:0;")
+						.mail-header.clearfix.row
+							.col-md-8
+								.btn-group
+									a.btn.btn-default.btn-small.dropdown-toggle(href='#', data-toggle='dropdown')
+										span.glyph-icon.icon-caret-down
+									ul.dropdown-menu
+										li
+											a(href='/inbox') Inbox
+										li
+											a(href='/inbox/sent') Sent
+							a.btn.btn-md.float-right.btn-primary(data-toggle="modal",data-target="#myModal") Compose
+							- if (messages == '')
+								h1 No Messages
+						#myModal.modal.fade(role='dialog')
+							.modal-dialog
+								// Modal content
+								.modal-content
+									.modal-header
+										button.close(type='button', data-dismiss='modal') ×
+										h4.modal-title Compose Message
+									.modal-body
+										form.form-horizontal(action='', method='post')
+											.form-group
+												label.col-sm-3.control-label.tooltips Venue
+													span.tooltiptexts Venue
+												.col-sm-6
+													- if (flash.role == 'superadmin')
+														select.chosen-select(name='venueid', placeholder='Select Users..', required)
+															option Select
+															optgroup(label="Vendor")
+																- if (users)
+																	- each user, i in users
+																		- if (user.role == 'vendor')
+																			option(value="#{user._id},#{user.role}") #{user.companyname}
+															optgroup(label="Referral")
+																- if (users)
+																	- each user, i in users
+																		- if (user.role == 'referral')
+																			option(value="#{user._id},#{user.role}") #{user.firstname} #{user.lastname}
+													- if (flash.role == 'vendor')
+														select.chosen-select(name='venueid', placeholder='Select Users..', required)
+															option Select
+															optgroup(label="Merchent")
+																- if (users)
+																	- each user, i in users
+																		- if (user.role == 'superadmin')
+																			option(value="#{user._id},#{user.role}") Merchant
+															optgroup(label="Referral")
+																- if (refer)
+																	option(value="#{refer._id},#{refer.role}") #{refer.firstname} #{refer.lastname}
+															optgroup(label="Enduser")
+																- if (allenduser)
+																	- each enduser, i in allenduser
+																		option(value="#{enduser.enduserid._id},#{enduser.enduserid.role}") #{enduser.enduserid.firstname} #{enduser.enduserid.lastname}
+													- if (flash.role == 'referral')
+														select.chosen-select(name='venueid', placeholder='Select Users..', required)
+															option Select
+															optgroup(label="Merchant")
+																- if (users)
+																	- each user, i in users
+																		- if (user.role == 'superadmin')
+																			option(value="#{user._id},#{user.role}") Merchant
+															optgroup(label="Vendor")
+																- if (venues)
+																	- each venue, i in venues
+																		- if (venue.role == 'vendor')
+																			option(value="#{venue._id},#{venue.role}") #{venue.companyname}
+											.form-group
+												label.col-sm-3.control-label.tooltips Message
+													span.tooltiptexts Message
+												.col-sm-6
+													textarea.form-control.textarea-autosize(name='message', rows='3', id='message', required)
+											.bg-default.text-center
+												button.btn.btn-lg.btn-primary(type='submit') Send
+									.modal-footer
+										button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+						- if (messages)
+							table.table.table-hover.text-center
+								thead
+									tr
+										th Delete
+										th Name
+										th Message
+										th Date & Time
+								tbody
+									- each message, i in messages
+										- if (message.senderrole == 'superadmin' || message.senderrole == 'vendor')
+											tr
+												td
+													a.btn.btn-danger(href="#")
+														i.glyph-icon.icon-pencil-square-o
+												td.email-title
+													| #{message.senderid.companyname}
+												td.email-body
+													| #{message.message}
+												td
+													| #{message.createddate}
+										- if (message.senderrole == 'referral')
+											tr
+												td
+													a.btn.btn-danger(href="#")
+														i.glyph-icon.icon-pencil-square-o
+												td.email-title
+													| #{message.senderid.firstname} #{message.senderid.lastname}
+												td.email-body
+													| #{message.message}
+												td
+													| #{message.createddate}
+										- if (message.senderrole == 'enduser')
+											tr
+												td
+													a.btn.btn-danger(href="#")
+														i.glyph-icon.icon-pencil-square-o
+												td.email-title
+													| #{message.senderenduser.firstname} #{message.senderenduser.lastname}
+												td.email-body
+													| #{message.message}
+												td
+													| #{message.createddate}
+
+
+		script(type='text/javascript', src='/stylesheets/bootstrap/js/bootstrap.js')
